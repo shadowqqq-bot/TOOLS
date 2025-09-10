@@ -355,24 +355,30 @@
     <h1 class="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">TOOLS</h1>
 
     <div class="border-b border-gray-200 dark:border-gray-700 mb-6">
-        <nav class="-mb-px flex space-x-6 overflow-x-auto" aria-label="Tabs">
-            <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'inch-mm')">
+        <nav class="-mb-px flex flex-wrap gap-x-6 gap-y-2" aria-label="Tabs">
+            <button class="tab-link py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'inch-mm')">
                 인치 ↔ mm 변환
             </button>
-            <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'keyway')">
+            <button class="tab-link py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'keyway')">
                 Keyway
             </button>
-            <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'spider-leg')">
-                SPIDER 다리폭
-            </button>
-            <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'it-tolerance')">
+            <button class="tab-link py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'it-tolerance')">
                 IT공차
             </button>
-            <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'balance')">
+            <button class="tab-link py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'balance')">
                 Balance
             </button>
-             <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'balance-2')">
+             <button class="tab-link py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'balance-2')">
                 Balance-2
+            </button>
+             <button class="tab-link py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'torsional-stiffness')">
+                비틀림 강성
+            </button>
+             <button class="tab-link py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'torsional-angle')">
+                비틀림각
+            </button>
+            <button class="tab-link py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'spider-leg')">
+                SPIDER 다리폭
             </button>
         </nav>
     </div>
@@ -414,50 +420,6 @@
             <div class="tool-group bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
                  <h3 class="text-lg font-medium text-gray-800 dark:text-gray-100 mb-3">계산 결과:</h3>
                  <div id="keyway-result" class="mt-2 text-sm text-gray-800 dark:text-gray-200 min-h-[8rem]"></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="spider-leg" class="tab-content">
-        <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">SPIDER 다리폭 계산기</h2>
-        <div class="space-y-6">
-            <div class="tool-group">
-                <label for="spider-preset" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">표준품 자동 입력</label>
-                <select id="spider-preset" onchange="fillSpiderData()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
-                    <option value="">품명 선택...</option>
-                    <option value="SJC-14">SJC-14</option>
-                    <option value="SJC-20">SJC-20</option>
-                    <option value="SJC-25">SJC-25</option>
-                    <option value="SJC-30">SJC-30</option>
-                    <option value="SJC-40">SJC-40</option>
-                    <option value="SJC-48">SJC-48</option>
-                    <option value="SJC-55">SJC-55</option>
-                    <option value="SJC-65">SJC-65</option>
-                    <option value="SJC-80">SJC-80</option>
-                    <option value="SJC-90">SJC-90</option>
-                    <option value="SJC-100">SJC-100</option>
-                </select>
-            </div>
-             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                 <div class="tool-group">
-                    <label for="spider-pcd" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">P.C.D (mm)</label>
-                    <input type="number" id="spider-pcd" placeholder="P.C.D 입력" oninput="calculateSpiderLeg()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
-                </div>
-                 <div class="tool-group">
-                    <label for="spider-legs" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">다리 개수</label>
-                    <input type="number" id="spider-legs" placeholder="개수 입력" oninput="calculateSpiderLeg()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
-                </div>
-                 <div class="tool-group">
-                     <label for="spider-face-diameter" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">FACE 직경 (mm)</label>
-                     <input type="number" id="spider-face-diameter" placeholder="직경 입력" oninput="calculateSpiderLeg()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
-                </div>
-            </div>
-            <div class="tool-group bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-                <div class="flex justify-between items-center">
-                    <h3 class="text-lg font-medium text-gray-800 dark:text-gray-100">계산 결과:</h3>
-                    <button onclick="resetSpiderCalculator()" class="px-3 py-1 text-sm font-medium text-indigo-600 bg-indigo-100 dark:bg-indigo-900 dark:text-indigo-300 rounded-md hover:bg-indigo-200 dark:hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">초기화</button>
-                </div>
-                <div id="spider-leg-result" class="mt-2 text-sm text-gray-800 dark:text-gray-200 min-h-[4rem] flex items-center"></div>
             </div>
         </div>
     </div>
@@ -687,35 +649,35 @@
         <div id="balance-2-wrapper">
              <div class="calculator-wrapper">
                 <div class="tabs">
-                    <button class="tab-link-b2 active" onclick="openBalance2Tab(event, 'unbalanceCalc')">언밸런스 계산</button>
-                    <button class="tab-link-b2" onclick="openBalance2Tab(event, 'eccentricityCalc')">편심량 계산</button>
-                    <button class="tab-link-b2" onclick="openBalance2Tab(event, 'formulas')">관련 공식</button>
+                    <button class="tab-link-b2 active" onclick="openBalance2Tab(event, 'unbalanceCalcB2')">언밸런스 계산</button>
+                    <button class="tab-link-b2" onclick="openBalance2Tab(event, 'eccentricityCalcB2')">편심량 계산</button>
+                    <button class="tab-link-b2" onclick="openBalance2Tab(event, 'formulasB2')">관련 공식</button>
                 </div>
 
-                <div id="unbalanceCalc" class="tab-content-b2" style="display: block;">
+                <div id="unbalanceCalcB2" class="tab-content-b2" style="display: block;">
                     <div class="calculator">
                         <h2>언밸런스 & G 등급</h2>
-                        <div class="input-group"><label for="mass">질량 (g)</label><input type="number" id="mass_b2" placeholder="예: 1000"></div>
-                        <div class="input-group"><label for="cg_x">무게중심 X 좌표 (mm)</label><input type="number" id="cg_x_b2" placeholder="예: 0.5"></div>
-                        <div class="input-group"><label for="cg_y">무게중심 Y 좌표 (mm)</label><input type="number" id="cg_y_b2" placeholder="예: -0.3"></div>
-                        <div class="input-group"><label for="rpm">회전속도 (RPM)</label><input type="number" id="rpm_b2" placeholder="예: 3600"></div>
-                        <div class="input-group"><label for="g_grade">목표 G 등급</label><select id="g_grade_b2"><option value="">-- 등급 선택 (선택 사항) --</option><option value="40">G40 (크랭크축 구동부)</option><option value="16">G16 (농업용 기계)</option><option value="6.3">G6.3 (일반 기계, 팬, 펌프)</option><option value="2.5">G2.5 (터빈, 엔진, 공작기계)</option><option value="1">G1 (연삭기 주축, 녹음기)</option><option value="0.4">G0.4 (정밀 스핀들, 자이로스코프)</option></select></div>
+                        <div class="input-group"><label for="mass_b2">질량 (g)</label><input type="number" id="mass_b2" placeholder="예: 1000"></div>
+                        <div class="input-group"><label for="cg_x_b2">무게중심 X 좌표 (mm)</label><input type="number" id="cg_x_b2" placeholder="예: 0.5"></div>
+                        <div class="input-group"><label for="cg_y_b2">무게중심 Y 좌표 (mm)</label><input type="number" id="cg_y_b2" placeholder="예: -0.3"></div>
+                        <div class="input-group"><label for="rpm_b2">회전속도 (RPM)</label><input type="number" id="rpm_b2" placeholder="예: 3600"></div>
+                        <div class="input-group"><label for="g_grade_b2">목표 G 등급</label><select id="g_grade_b2"><option value="">-- 등급 선택 (선택 사항) --</option><option value="40">G40 (크랭크축 구동부)</option><option value="16">G16 (농업용 기계)</option><option value="6.3">G6.3 (일반 기계, 팬, 펌프)</option><option value="2.5">G2.5 (터빈, 엔진, 공작기계)</option><option value="1">G1 (연삭기 주축, 녹음기)</option><option value="0.4">G0.4 (정밀 스핀들, 자이로스코프)</option></select></div>
                         <button class="calculate-btn" onclick="calculateUnbalance_b2()">계산하기</button>
                         <div id="resultUnbalance_b2" class="result-box">결과가 여기에 표시됩니다.</div>
                     </div>
                 </div>
 
-                <div id="eccentricityCalc" class="tab-content-b2" style="display: none;">
+                <div id="eccentricityCalcB2" class="tab-content-b2" style="display: none;">
                     <div class="calculator">
                         <h2>편심량 계산</h2>
-                        <div class="input-group"><label for="measured_unbalance">측정 언밸런스 량 (g·mm)</label><input type="number" id="measured_unbalance_b2" placeholder="예: 583.10"></div>
-                        <div class="input-group"><label for="ecc_mass">질량 (g)</label><input type="number" id="ecc_mass_b2" placeholder="예: 1000"></div>
+                        <div class="input-group"><label for="measured_unbalance_b2">측정 언밸런스 량 (g·mm)</label><input type="number" id="measured_unbalance_b2" placeholder="예: 583.10"></div>
+                        <div class="input-group"><label for="ecc_mass_b2">질량 (g)</label><input type="number" id="ecc_mass_b2" placeholder="예: 1000"></div>
                         <button class="calculate-btn" onclick="calculateEccentricity_b2()">계산하기</button>
                         <div id="resultEccentricity_b2" class="result-box">결과가 여기에 표시됩니다.</div>
                     </div>
                 </div>
 
-                <div id="formulas" class="tab-content-b2 formulas-page" style="display: none;">
+                <div id="formulasB2" class="tab-content-b2 formulas-page" style="display: none;">
                     <h2>관련 공식</h2>
                     <div class="formula-item">
                         <h3>1. 편심량 (e)</h3>
@@ -769,9 +731,104 @@
              </div>
         </div>
     </div>
+    
+    <div id="torsional-stiffness" class="tab-content">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">비틀림 강성 계산기</h2>
+        <div class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="tool-group">
+                    <label for="torque-max" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">토크 (최대) (N.m)</label>
+                    <input type="number" id="torque-max" placeholder="최대 토크" oninput="calculateStiffness()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+                <div class="tool-group">
+                    <label for="torque-min" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">토크 (최소) (N.m)</label>
+                    <input type="number" id="torque-min" placeholder="최소 토크" oninput="calculateStiffness()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+                 <div class="tool-group">
+                    <label for="angle-max" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">각도 (최대) (deg)</label>
+                    <input type="number" id="angle-max" placeholder="최대 각도" oninput="calculateStiffness()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+                <div class="tool-group">
+                    <label for="angle-min" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">각도 (최소) (deg)</label>
+                    <input type="number" id="angle-min" placeholder="최소 각도" oninput="calculateStiffness()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+            </div>
+            <div class="tool-group bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                 <h3 class="text-lg font-medium text-gray-800 dark:text-gray-100 mb-3">계산 결과:</h3>
+                 <div id="stiffness-result" class="mt-2 text-sm text-gray-800 dark:text-gray-200 min-h-[4rem]"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="torsional-angle" class="tab-content">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">비틀림각 계산기</h2>
+        <div class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="tool-group">
+                    <label for="stiffness-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">비틀림 강성 (N.m/rad)</label>
+                    <input type="number" id="stiffness-input" placeholder="강성 값 입력" oninput="calculateTorsionalAngle()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+                <div class="tool-group">
+                    <label for="torque-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">작용 토크 (N.m)</label>
+                    <input type="number" id="torque-input" placeholder="토크 값 입력" oninput="calculateTorsionalAngle()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+            </div>
+            <div class="tool-group bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                 <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-medium text-gray-800 dark:text-gray-100">계산 결과:</h3>
+                    <button onclick="resetTorsionalAngleCalculator()" class="px-3 py-1 text-sm font-medium text-indigo-600 bg-indigo-100 dark:bg-indigo-900 dark:text-indigo-300 rounded-md hover:bg-indigo-200 dark:hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">초기화</button>
+                 </div>
+                 <div id="torsional-angle-result" class="mt-2 text-sm text-gray-800 dark:text-gray-200 min-h-[4rem]"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="spider-leg" class="tab-content">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">SPIDER 다리폭 계산기</h2>
+        <div class="space-y-6">
+            <div class="tool-group">
+                <label for="spider-preset" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">표준품 자동 입력</label>
+                <select id="spider-preset" onchange="fillSpiderData()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                    <option value="">품명 선택...</option>
+                    <option value="SJC-14">SJC-14</option>
+                    <option value="SJC-20">SJC-20</option>
+                    <option value="SJC-25">SJC-25</option>
+                    <option value="SJC-30">SJC-30</option>
+                    <option value="SJC-40">SJC-40</option>
+                    <option value="SJC-48">SJC-48</option>
+                    <option value="SJC-55">SJC-55</option>
+                    <option value="SJC-65">SJC-65</option>
+                    <option value="SJC-80">SJC-80</option>
+                    <option value="SJC-90">SJC-90</option>
+                    <option value="SJC-100">SJC-100</option>
+                </select>
+            </div>
+             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                 <div class="tool-group">
+                    <label for="spider-pcd" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">P.C.D (mm)</label>
+                    <input type="number" id="spider-pcd" placeholder="P.C.D 입력" oninput="calculateSpiderLeg()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+                 <div class="tool-group">
+                    <label for="spider-legs" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">다리 개수</label>
+                    <input type="number" id="spider-legs" placeholder="개수 입력" oninput="calculateSpiderLeg()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+                 <div class="tool-group">
+                     <label for="spider-face-diameter" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">FACE 직경 (mm)</label>
+                     <input type="number" id="spider-face-diameter" placeholder="직경 입력" oninput="calculateSpiderLeg()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+            </div>
+            <div class="tool-group bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-medium text-gray-800 dark:text-gray-100">계산 결과:</h3>
+                    <button onclick="resetSpiderCalculator()" class="px-3 py-1 text-sm font-medium text-indigo-600 bg-indigo-100 dark:bg-indigo-900 dark:text-indigo-300 rounded-md hover:bg-indigo-200 dark:hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">초기화</button>
+                </div>
+                <div id="spider-leg-result" class="mt-2 text-sm text-gray-800 dark:text-gray-200 min-h-[4rem] flex items-center"></div>
+            </div>
+        </div>
+    </div>
 
     <div class="mt-8 text-center text-xs text-gray-400 dark:text-gray-500">
-        VER-1.03
+        VER-1.05
     </div>
 </div>
 
@@ -1285,9 +1342,11 @@
 
     // --- Balance-2 Calculator Functions ---
     function initializeBalance2Calculator() {
-        // Initialize logic for the second balance calculator
         document.querySelector('#balance-2-wrapper .tab-link-b2').classList.add('active');
-        document.querySelector('#balance-2-wrapper .tab-content-b2').style.display = 'block';
+        const firstTabContent = document.querySelector('#balance-2-wrapper .tab-content-b2');
+        if (firstTabContent) {
+            firstTabContent.style.display = 'block';
+        }
     }
 
     function openBalance2Tab(evt, tabName) {
@@ -1300,7 +1359,12 @@
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].classList.remove("active");
         }
-        document.getElementById(tabName).style.display = "block";
+
+        const selectedTabContent = document.getElementById(tabName);
+        if(selectedTabContent){
+            selectedTabContent.style.display = "block";
+        }
+        
         evt.currentTarget.classList.add("active");
     }
 
@@ -1364,6 +1428,87 @@
                 무게중심이 회전축 중심으로부터 <br> 약 <strong>${eccentricity.toFixed(4)} mm</strong> 만큼 벗어나 있습니다.
             </div>
         `;
+    }
+
+    // --- Torsional Stiffness Calculator Functions ---
+    function calculateStiffness() {
+        const torqueMax = parseFloat(document.getElementById('torque-max').value);
+        const torqueMin = parseFloat(document.getElementById('torque-min').value);
+        const angleMax = parseFloat(document.getElementById('angle-max').value);
+        const angleMin = parseFloat(document.getElementById('angle-min').value);
+        const resultDiv = document.getElementById('stiffness-result');
+
+        if (isNaN(torqueMax) || isNaN(torqueMin) || isNaN(angleMax) || isNaN(angleMin)) {
+            resultDiv.innerHTML = '';
+            return;
+        }
+
+        const torqueDiff = torqueMax - torqueMin;
+        const angleDiff = angleMax - angleMin;
+
+        if (angleDiff === 0) {
+            resultDiv.innerHTML = '<p class="text-red-500">각도 차이는 0이 될 수 없습니다.</p>';
+            return;
+        }
+
+        const stiffnessDeg = torqueDiff / angleDiff;
+        const stiffnessRad = stiffnessDeg * (180 / Math.PI);
+
+        resultDiv.innerHTML = `
+            <table class="w-full text-left border-collapse">
+                <tbody>
+                    <tr class="border-b dark:border-gray-600">
+                        <td class="py-2 pr-2 font-semibold">비틀림 강성:</td>
+                        <td class="py-2 font-mono text-xl text-indigo-400 font-bold">${stiffnessDeg.toFixed(2)} N.m/deg</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 pr-2 font-semibold"></td>
+                        <td class="py-2 font-mono text-xl text-indigo-400 font-bold">${stiffnessRad.toFixed(2)} N.m/rad</td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+    }
+    
+    // --- Torsional Angle Calculator Functions ---
+    function calculateTorsionalAngle() {
+        const stiffness = parseFloat(document.getElementById('stiffness-input').value);
+        const torque = parseFloat(document.getElementById('torque-input').value);
+        const resultDiv = document.getElementById('torsional-angle-result');
+
+        if (isNaN(stiffness) || isNaN(torque)) {
+            resultDiv.innerHTML = '';
+            return;
+        }
+
+        if (stiffness === 0) {
+            resultDiv.innerHTML = '<p class="text-red-500">비틀림 강성은 0이 될 수 없습니다.</p>';
+            return;
+        }
+
+        const angleRad = torque / stiffness;
+        const angleDeg = angleRad * (180 / Math.PI);
+
+        resultDiv.innerHTML = `
+            <table class="w-full text-left border-collapse">
+                <tbody>
+                    <tr class="border-b dark:border-gray-600">
+                        <td class="py-2 pr-2 font-semibold">비틀림 각:</td>
+                        <td class="py-2 font-mono text-xl text-indigo-400 font-bold">${angleDeg.toFixed(4)} deg</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 pr-2 font-semibold"></td>
+                        <td class="py-2 font-mono text-xl text-indigo-400 font-bold">${angleRad.toFixed(4)} rad</td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+    }
+
+    function resetTorsionalAngleCalculator() {
+        document.getElementById('stiffness-input').value = '';
+        document.getElementById('torque-input').value = '';
+        document.getElementById('torsional-angle-result').innerHTML = '';
     }
 </script>
 
