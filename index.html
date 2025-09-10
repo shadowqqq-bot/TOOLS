@@ -3,481 +3,1370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>커플링 검색기-(주)성일기공</title>
+    <title>TOOLS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
-            color: #1f2937;
         }
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: #3b82f6;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
+        .tab-content {
+            display: none;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .tab-content.active {
+            display: block;
         }
-        .custom-dropdown-options::-webkit-scrollbar { width: 6px; }
-        .custom-dropdown-options::-webkit-scrollbar-track { background: #f1f1f1; }
-        .custom-dropdown-options::-webkit-scrollbar-thumb { background: #888; border-radius: 3px; }
-        .custom-dropdown-options::-webkit-scrollbar-thumb:hover { background: #555; }
-        .lang-btn.active, .view-btn.active { background-color: #3b82f6; color: white; }
-        #table-view-container table th, #table-view-container table td {
-            padding: 8px 12px;
-            border: 1px solid #e5e7eb;
-            vertical-align: middle;
+
+        /* Styles for IT Tolerance Tab */
+        #it-tolerance-wrapper {
+            font-family: 'Segoe UI', 'Malgun Gothic', Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f2f5;
+            border-radius: 0.75rem; /* Match container rounding */
+        }
+        #it-tolerance-wrapper .it-container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        #it-tolerance-wrapper h1 {
+            color: #1c1e21;
             text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: bold;
         }
-        #table-view-container table img {
-            max-width: 60px;
-            height: auto;
-            margin: 0 auto;
+        #it-tolerance-wrapper .input-group {
+            margin-bottom: 20px;
         }
+        #it-tolerance-wrapper label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4b4f56;
+            font-size: 0.95em;
+        }
+        #it-tolerance-wrapper input[type="number"], #it-tolerance-wrapper select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccd0d5;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        #it-tolerance-wrapper input[type="number"]:focus, #it-tolerance-wrapper select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+            outline: none;
+        }
+        #it-tolerance-wrapper .flex-input {
+            display: flex;
+            gap: 10px;
+        }
+        #it-tolerance-wrapper .flex-input select {
+            width: 35%;
+        }
+        #it-tolerance-wrapper .flex-input input {
+            width: 65%;
+        }
+        #it-tolerance-wrapper #result-container { /* Renamed from #result to avoid conflict */
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        #it-tolerance-wrapper #result-container h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #343a40;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        #it-tolerance-wrapper #result-container p {
+            font-size: 1.1em;
+            color: #212529;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        #it-tolerance-wrapper .error {
+            color: #d93025;
+            font-weight: bold;
+        }
+
+        /* Styles for Balance Calculator Tab */
+        #balance-calculator-wrapper {
+             font-family: 'Inter', sans-serif;
+        }
+        #balance-calculator-wrapper .main-container {
+             max-width: 800px;
+             margin: 0 auto;
+             background-color: #fff;
+             border-radius: 1.5rem;
+             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        #balance-calculator-wrapper h2 {
+             font-weight: 700;
+             font-size: 2rem;
+             color: #1f2937;
+        }
+        #balance-calculator-wrapper p {
+             color: #6b7280;
+        }
+        #balance-calculator-wrapper .input-grid {
+             display: grid;
+             gap: 1.5rem;
+             margin-bottom: 2rem;
+        }
+         @media (min-width: 640px) {
+             #balance-calculator-wrapper .input-grid {
+                 grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        #balance-calculator-wrapper .input-group {
+             display: flex;
+             flex-direction: column;
+        }
+        #balance-calculator-wrapper .input-group label {
+             font-weight: 600;
+             margin-bottom: 0.5rem;
+             color: #4b5563;
+        }
+        #balance-calculator-wrapper .input-group input, #balance-calculator-wrapper .input-group select {
+             padding: 0.75rem;
+             border: 1px solid #d1d5db;
+             border-radius: 0.75rem;
+             text-align: right;
+             transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        #balance-calculator-wrapper .input-group input:focus, #balance-calculator-wrapper .input-group select:focus {
+             outline: none;
+             border-color: #3b82f6;
+             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        #balance-calculator-wrapper .result-box {
+             background-color: #f9fafb;
+             border: 1px solid #e5e7eb;
+             border-radius: 1.5rem;
+             padding: 2rem;
+             margin-top: 2rem;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+        }
+        #balance-calculator-wrapper .result-box h3 {
+             font-weight: 700;
+             font-size: 1.5rem;
+             margin-bottom: 1.5rem;
+             color: #1f2937;
+        }
+        #balance-calculator-wrapper .result-item {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             width: 100%;
+             padding: 0.75rem 0;
+             border-bottom: 1px dashed #e5e7eb;
+        }
+        #balance-calculator-wrapper .result-item:last-child {
+             border-bottom: none;
+        }
+        #balance-calculator-wrapper .result-label {
+             font-weight: 500;
+             color: #6b7280;
+        }
+        #balance-calculator-wrapper .result-value {
+             font-weight: 700;
+             color: #111827;
+             font-size: 1.125rem;
+        }
+        #balance-calculator-wrapper .unit {
+             font-size: 0.875rem;
+             color: #9ca3af;
+             margin-left: 0.25rem;
+        }
+        #balance-calculator-wrapper .tab-bar {
+             display: flex;
+             justify-content: center;
+             background-color: #fff;
+             border-radius: 1.5rem 1.5rem 0 0;
+        }
+        #balance-calculator-wrapper .tab-bar button {
+             flex: 1;
+             padding: 1rem;
+             font-weight: 600;
+             text-align: center;
+             border-bottom: 3px solid transparent;
+             color: #6b7280;
+             transition: all 0.3s;
+             background-color: transparent;
+             border-radius: 0;
+        }
+        #balance-calculator-wrapper .tab-bar button.active {
+             color: #3b82f6;
+             border-bottom-color: #3b82f6;
+        }
+        #balance-calculator-wrapper .balance-tab-content {
+             padding: 2rem 2.5rem;
+             background-color: #fff;
+             border-radius: 0 0 1.5rem 1.5rem;
+        }
+        #balance-calculator-wrapper .common-inputs {
+             padding: 2rem 2.5rem 0;
+             background-color: #fff;
+             border-radius: 1.5rem 1.5rem 0 0;
+        }
+
+        /* Styles for Balance-2 Calculator Tab */
+        #balance-2-wrapper {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+        #balance-2-wrapper .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+        #balance-2-wrapper .calculator-wrapper {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* 탭과 내용 경계 정리 */
+        }
+        #balance-2-wrapper .tabs {
+            display: flex;
+            background-color: #e9ecef;
+        }
+        #balance-2-wrapper .tab-link-b2 {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            color: #555;
+            transition: background-color 0.3s, color 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        #balance-2-wrapper .tab-link-b2.active {
+            color: #007bff;
+            border-bottom: 3px solid #007bff;
+        }
+        #balance-2-wrapper .tab-content-b2 {
+            padding: 25px 35px;
+            display: none;
+        }
+        #balance-2-wrapper .calculator h2, #balance-2-wrapper .formulas-page h2 {
+            text-align: center;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.5em;
+        }
+        #balance-2-wrapper .input-group {
+            margin-bottom: 18px;
+        }
+        #balance-2-wrapper .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+        #balance-2-wrapper .input-group input, #balance-2-wrapper .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1em;
+            background-color: white;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        #balance-2-wrapper .input-group input:focus, #balance-2-wrapper .input-group select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+        #balance-2-wrapper button.calculate-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #balance-2-wrapper button.calculate-btn:hover {
+            background-color: #0056b3;
+        }
+        #balance-2-wrapper .result-box {
+            margin-top: 25px;
+            padding: 18px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.1em;
+            color: #333;
+            font-weight: bold;
+            line-height: 1.6;
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #balance-2-wrapper .result-section {
+             margin-top: 10px;
+             padding-top: 10px;
+             border-top: 1px solid #ccc;
+             width: 100%;
+        }
+        #balance-2-wrapper .grade-details {
+            font-size: 0.85em;
+            color: #555;
+            font-weight: normal;
+            text-align: left;
+            margin-top: 8px;
+            padding: 10px;
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            line-height: 1.5;
+        }
+        #balance-2-wrapper .formula-item { margin-bottom: 20px; }
+        #balance-2-wrapper .formula-item h3 { color: #007bff; border-bottom: 2px solid #e9ecef; padding-bottom: 5px; margin-bottom: 10px; font-size: 1.2em; }
+        #balance-2-wrapper .formula-text { font-family: 'Courier New', Courier, monospace; font-size: 1.1em; font-weight: bold; background-color: #e9ecef; padding: 10px; border-radius: 5px; text-align: center; margin: 10px 0; }
+        #balance-2-wrapper .formula-item ul { list-style-type: none; padding-left: 0; font-size: 0.9em; }
+        #balance-2-wrapper .formula-item ul li { margin-bottom: 5px; }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-4 sm:p-6 md:p-8">
 
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-7xl relative">
-        <div class="absolute top-4 right-4 text-xs text-gray-400 text-right">
-            <div>VER-1.02</div>
-            <div>(CATALOGUE 2025 VOL2.0)</div>
-        </div>
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-4" data-lang-key="mainTitle">커플링 검색기-(주)성일기공</h1>
-        
-        <div id="lang-switcher" class="text-center mb-4 space-x-2">
-            <button onclick="setLanguage('ko')" class="lang-btn px-3 py-1 text-sm border rounded-md">한국어</button>
-            <button onclick="setLanguage('en')" class="lang-btn px-3 py-1 text-sm border rounded-md">English</button>
-            <button onclick="setLanguage('ja')" class="lang-btn px-3 py-1 text-sm border rounded-md">日本語</button>
-        </div>
+<div class="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+    <h1 class="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">TOOLS</h1>
 
-        <p class="text-center text-gray-600 mb-8" data-lang-key="subTitle">
-            사양을 입력하여 제품을 검색하세요.
-        </p>
+    <div class="border-b border-gray-200 dark:border-gray-700 mb-6">
+        <nav class="-mb-px flex space-x-6 overflow-x-auto" aria-label="Tabs">
+            <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'inch-mm')">
+                인치 ↔ mm 변환
+            </button>
+            <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'keyway')">
+                Keyway
+            </button>
+            <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'spider-leg')">
+                SPIDER 다리폭
+            </button>
+            <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'it-tolerance')">
+                IT공차
+            </button>
+            <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'balance')">
+                Balance
+            </button>
+             <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-indigo-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:border-gray-500" onclick="openTab(event, 'balance-2')">
+                Balance-2
+            </button>
+        </nav>
+    </div>
 
-        <!-- 검색 필터 섹션 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            <div>
-                <label for="coupling-type" class="block text-sm font-medium text-gray-700 mb-2" data-lang-key="couplingType">제품 타입</label>
-                <select id="coupling-type" class="w-full px-4 py-2 border border-gray-300 rounded-md"></select>
-            </div>
-            <div>
-                <label for="fastening-type" class="block text-sm font-medium text-gray-700 mb-2" data-lang-key="fasteningType">체결 타입</label>
-                <select id="fastening-type" class="w-full px-4 py-2 border border-gray-300 rounded-md"></select>
-            </div>
-            <div class="relative">
-                <label for="product-code-button" class="block text-sm font-medium text-gray-700 mb-2" data-lang-key="productCode">품명</label>
-                <button id="product-code-button" class="w-full px-4 py-2 bg-white border border-gray-300 rounded-md text-left flex justify-between items-center">
-                    <span class="truncate" data-lang-key="all">전체</span>
-                    <svg class="w-4 h-4 ml-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div id="product-code-dropdown" class="hidden absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
-                    <input type="text" id="product-code-search" data-lang-placeholder="productCodeSearch" placeholder="품명 검색..." class="w-full px-3 py-2 border-b focus:outline-none">
-                    <div id="product-code-options" class="custom-dropdown-options max-h-48 overflow-y-auto p-2"></div>
+    <div id="inch-mm" class="tab-content">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">인치 ↔ 밀리미터 변환기</h2>
+        <div class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="tool-group">
+                    <label for="inch-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">인치 (inch)</label>
+                    <input type="text" id="inch-input" placeholder="인치 값 입력 (예: 1/8 또는 1 1/8)" oninput="convert('inch')" onchange="evaluateFraction(this)" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+                <div class="tool-group">
+                    <label for="mm-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">밀리미터 (mm)</label>
+                    <input type="number" id="mm-input" placeholder="mm 값 입력" oninput="convert('mm')" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                 </div>
             </div>
-            <div>
-                <label for="inner-dia1" class="block text-sm font-medium text-gray-700 mb-2" data-lang-key="innerDia1">내경1</label>
-                <input type="number" id="inner-dia1" data-lang-placeholder="example" placeholder="예: 12" class="w-full px-4 py-2 border border-gray-300 rounded-md">
-            </div>
-            <div>
-                <label for="inner-dia2" class="block text-sm font-medium text-gray-700 mb-2" data-lang-key="innerDia2">내경2</label>
-                <input type="number" id="inner-dia2" data-lang-placeholder="example" placeholder="예: 12" class="w-full px-4 py-2 border border-gray-300 rounded-md">
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2" data-lang-key="outerDia">외경</label>
-                <div class="flex items-center space-x-2">
-                    <input type="number" id="min-outer-dia" data-lang-placeholder="min" placeholder="최소값" class="w-1/2 px-4 py-2 border rounded-md">
-                    <span class="text-gray-500">~</span>
-                    <input type="number" id="max-outer-dia" data-lang-placeholder="max" placeholder="최대값" class="w-1/2 px-4 py-2 border rounded-md">
+            <div class="tool-group bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-medium text-gray-800 dark:text-gray-100">결과:</h3>
+                    <button onclick="resetCalculator()" class="px-3 py-1 text-sm font-medium text-indigo-600 bg-indigo-100 dark:bg-indigo-900 dark:text-indigo-300 rounded-md hover:bg-indigo-200 dark:hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">초기화</button>
                 </div>
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2" data-lang-key="length">길이</label>
-                <div class="flex items-center space-x-2">
-                    <input type="number" id="min-length" data-lang-placeholder="min" placeholder="최소값" class="w-1/2 px-4 py-2 border rounded-md">
-                    <span class="text-gray-500">~</span>
-                    <input type="number" id="max-length" data-lang-placeholder="max" placeholder="최대값" class="w-1/2 px-4 py-2 border rounded-md">
+                <p id="result" class="text-xl font-mono mt-2 text-indigo-600 dark:text-indigo-400 min-h-[2.5rem] flex items-center whitespace-nowrap overflow-x-auto"></p>
+                <div class="flex items-center mt-3 pt-3 border-t border-gray-200 dark:border-gray-600">
+                    <input type="checkbox" id="fraction-checkbox" onchange="updateConversion()" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                    <label for="fraction-checkbox" class="ml-2 block text-sm text-gray-900 dark:text-gray-200">인치 값을 분수로 표시</label>
                 </div>
-            </div>
-            <div>
-                <label for="max-torque" class="block text-sm font-medium text-gray-700 mb-2" data-lang-key="torque">허용/상용 토크</label>
-                <input type="number" id="max-torque" data-lang-placeholder="exampleTorque" placeholder="예: 5" class="w-full px-4 py-2 border rounded-md">
-            </div>
-            <div>
-                <label for="safety-factor" class="block text-sm font-medium text-gray-700 mb-2" data-lang-key="safetyFactor">안전 계수</label>
-                <input type="number" id="safety-factor" value="1" min="1" step="0.1" class="w-full px-4 py-2 border rounded-md">
-            </div>
-        </div>
-
-        <div class="flex items-center justify-center mb-4">
-            <input type="checkbox" id="enable-tolerance" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
-            <label for="enable-tolerance" class="ml-2 block text-sm text-gray-900" data-lang-key="tolerance">최대값 +10% 포함 검색 (길이, 외경)</label>
-        </div>
-
-        <div class="flex flex-col md:flex-row justify-center gap-4 mt-6">
-            <button onclick="searchCouplings()" id="search-button" class="w-full md:w-auto px-8 py-3 bg-blue-600 text-white font-semibold rounded-md shadow-md" data-lang-key="search">제품 검색</button>
-            <button onclick="resetForm()" id="reset-button" class="w-full md:w-auto px-8 py-3 bg-gray-300 text-gray-800 font-semibold rounded-md shadow-md" data-lang-key="reset">초기화</button>
-        </div>
-
-        <div id="results-section" class="mt-8 hidden">
-            <div class="flex justify-between items-center mb-4 border-b pb-2">
-                <h2 class="text-2xl font-semibold text-gray-800" data-lang-key="resultsTitle">검색 결과</h2>
-                <div id="view-switcher" class="space-x-2">
-                    <button onclick="setView('card')" class="view-btn px-3 py-1 text-sm border rounded-md active" data-lang-key="cardView">카드 보기</button>
-                    <button onclick="setView('table')" class="view-btn px-3 py-1 text-sm border rounded-md" data-lang-key="tableView">표 보기</button>
-                </div>
-            </div>
-            <div id="status-message" class="flex items-center justify-center p-4 text-gray-500 hidden">
-                <div class="spinner mr-3"></div>
-                <span id="status-text"></span>
-            </div>
-            <div id="card-view-container">
-                <div id="results-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-            </div>
-            <div id="table-view-container" class="hidden overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-500">
-                    <thead class="text-xs text-gray-700 bg-gray-50" style="text-transform: none;">
-                        <tr id="table-header"></tr>
-                    </thead>
-                    <tbody id="table-body"></tbody>
-                </table>
             </div>
         </div>
     </div>
 
-    <script>
-        let uploadedCouplings = [];
-        let lastFilteredResults = [];
-        let currentLanguage = 'ko';
-        let currentView = 'card';
-        const FIXED_GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1eWF3PI5Bk_FjSv7c-gK-mSLS6PuLGn3gm3kg806V5fA/edit?gid=0#gid=0";
-        
-        const translations = {
-            ko: {
-                locale: "ko-KR", mainTitle: "커플링 검색기-(주)성일기공", subTitle: "사양을 입력하여 제품을 검색하세요.", couplingType: "제품 타입", fasteningType: "체결 타입", productCode: "품명", all: "전체", productCodeSearch: "품명 검색...", innerDia1: "내경1", innerDia2: "내경2", example: "예: 12", outerDia: "외경", min: "최소값", max: "최대값", length: "길이", torque: "허용/상용 토크", exampleTorque: "예: 5", safetyFactor: "안전 계수", tolerance: "최대값 +10% 포함 검색 (길이, 외경)", search: "제품 검색", reset: "초기화", resultsTitle: "검색 결과", noResults: "검색 조건에 맞는 제품이 없습니다.", loading: "데이터를 불러오는 중입니다. 잠시만 기다려주세요...", loadSuccess: (c) => `${c}개의 제품 데이터를 성공적으로 불러왔습니다.`, selected: (c) => `${c}개 선택됨`, innerDiaRange: "내경 범위", torsionalStiffness: "비틀림 강성", angularMisalignment: "허용 편각", parallelMisalignment: "허용 편심", endPlay: "허용 엔드플레이", productTypeInfo: (type, fastening) => `${type || '-'} 타입 - ${fastening || '-'}`, cardView: "카드 보기", tableView: "표 보기", thImage: "이미지"
-            },
-            en: {
-                locale: "en-US", mainTitle: "Coupling Finder - SUNGIL", subTitle: "Enter specifications to search for products.", couplingType: "Product Type", fasteningType: "Fastening Type", productCode: "Product Code", all: "All", productCodeSearch: "Search product code...", innerDia1: "Inner Dia. 1", innerDia2: "Inner Dia. 2", example: "e.g., 12", outerDia: "Outer Dia.", min: "Min", max: "Max", length: "Length", torque: "Allowable/Rated Torque", exampleTorque: "e.g., 5", safetyFactor: "Safety Factor", tolerance: "Include +10% tolerance for max values (Length, OD)", search: "Search Products", reset: "Reset", resultsTitle: "Search Results", noResults: "No products match the search criteria.", loading: "Loading data, please wait...", loadSuccess: (c) => `Successfully loaded ${c} product data.`, selected: (c) => `${c} items selected`, innerDiaRange: "Inner Dia. Range", torsionalStiffness: "Torsional Stiffness", angularMisalignment: "Allowable Angular Misalignment", parallelMisalignment: "Allowable Parallel Misalignment", endPlay: "Allowable End-Play", productTypeInfo: (type, fastening) => `${type || '-'} TYPE - ${fastening || '-'}`, cardView: "Card View", tableView: "Table View", thImage: "Image"
-            },
-            ja: {
-                locale: "ja-JP", mainTitle: "カップリング検索機 - (株)ソンイル", subTitle: "仕様を入力して製品を検索してください。", couplingType: "製品タイプ", fasteningType: "締結タイプ", productCode: "品番", all: "すべて", productCodeSearch: "品番検索...", innerDia1: "内径1", innerDia2: "内径2", example: "例: 12", outerDia: "外径", min: "最小値", max: "最大値", length: "長さ", torque: "許容/常用トルク", exampleTorque: "例: 5", safetyFactor: "安全係数", tolerance: "最大値に+10%の公差を含めて検索（長さ、外径）", search: "製品検索", reset: "リセット", resultsTitle: "検索結果", noResults: "検索条件に合う製品がありません。", loading: "データを読み込み中です。しばらくお待ちください...", loadSuccess: (c) => `${c}件の製品データを正常に読み込みました。`, selected: (c) => `${c}件選択済み`, innerDiaRange: "内径範囲", torsionalStiffness: "ねじり剛性", angularMisalignment: "許容偏角", parallelMisalignment: "許容偏心", endPlay: "許容エンドプレイ", productTypeInfo: (type, fastening) => `${type || '-'} タイプ - ${fastening || '-'}`, cardView: "カード表示", tableView: "テーブル表示", thImage: "画像"
-            }
-        };
+    <div id="keyway" class="tab-content">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">키(Key) 규격 계산기</h2>
+        <div class="space-y-6">
+            <div class="tool-group">
+                <label for="shaft-diameter" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">적용하는 축 지름 (d)</label>
+                 <input type="number" id="shaft-diameter" placeholder="6 ~ 500 (mm)" oninput="calculateKeyway()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+            </div>
+            <div class="tool-group bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                 <h3 class="text-lg font-medium text-gray-800 dark:text-gray-100 mb-3">계산 결과:</h3>
+                 <div id="keyway-result" class="mt-2 text-sm text-gray-800 dark:text-gray-200 min-h-[8rem]"></div>
+            </div>
+        </div>
+    </div>
 
-        const dom = {
-            resultsContainer: document.getElementById('results-container'), statusMessageDiv: document.getElementById('status-message'), statusTextSpan: document.getElementById('status-text'), searchButton: document.getElementById('search-button'), resultsSection: document.getElementById('results-section'), couplingTypeSelect: document.getElementById('coupling-type'), fasteningTypeSelect: document.getElementById('fastening-type'), enableToleranceCheckbox: document.getElementById('enable-tolerance'), productCodeButton: document.getElementById('product-code-button'), productCodeDropdown: document.getElementById('product-code-dropdown'), productCodeSearch: document.getElementById('product-code-search'), productCodeOptions: document.getElementById('product-code-options'), cardViewContainer: document.getElementById('card-view-container'), tableViewContainer: document.getElementById('table-view-container'), tableHeader: document.getElementById('table-header'), tableBody: document.getElementById('table-body')
-        };
+    <div id="spider-leg" class="tab-content">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">SPIDER 다리폭 계산기</h2>
+        <div class="space-y-6">
+            <div class="tool-group">
+                <label for="spider-preset" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">표준품 자동 입력</label>
+                <select id="spider-preset" onchange="fillSpiderData()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                    <option value="">품명 선택...</option>
+                    <option value="SJC-14">SJC-14</option>
+                    <option value="SJC-20">SJC-20</option>
+                    <option value="SJC-25">SJC-25</option>
+                    <option value="SJC-30">SJC-30</option>
+                    <option value="SJC-40">SJC-40</option>
+                    <option value="SJC-48">SJC-48</option>
+                    <option value="SJC-55">SJC-55</option>
+                    <option value="SJC-65">SJC-65</option>
+                    <option value="SJC-80">SJC-80</option>
+                    <option value="SJC-90">SJC-90</option>
+                    <option value="SJC-100">SJC-100</option>
+                </select>
+            </div>
+             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                 <div class="tool-group">
+                    <label for="spider-pcd" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">P.C.D (mm)</label>
+                    <input type="number" id="spider-pcd" placeholder="P.C.D 입력" oninput="calculateSpiderLeg()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+                 <div class="tool-group">
+                    <label for="spider-legs" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">다리 개수</label>
+                    <input type="number" id="spider-legs" placeholder="개수 입력" oninput="calculateSpiderLeg()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+                 <div class="tool-group">
+                     <label for="spider-face-diameter" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">FACE 직경 (mm)</label>
+                     <input type="number" id="spider-face-diameter" placeholder="직경 입력" oninput="calculateSpiderLeg()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+            </div>
+            <div class="tool-group bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-medium text-gray-800 dark:text-gray-100">계산 결과:</h3>
+                    <button onclick="resetSpiderCalculator()" class="px-3 py-1 text-sm font-medium text-indigo-600 bg-indigo-100 dark:bg-indigo-900 dark:text-indigo-300 rounded-md hover:bg-indigo-200 dark:hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">초기화</button>
+                </div>
+                <div id="spider-leg-result" class="mt-2 text-sm text-gray-800 dark:text-gray-200 min-h-[4rem] flex items-center"></div>
+            </div>
+        </div>
+    </div>
 
-        window.onload = () => { fetchGoogleSheetData(); setLanguage(currentLanguage); };
-        
-        dom.couplingTypeSelect.addEventListener('change', () => { populateFasteningTypeDropdown(); populateProductCodeDropdown(); });
-        dom.fasteningTypeSelect.addEventListener('change', () => populateProductCodeDropdown());
-        dom.productCodeButton.addEventListener('click', () => dom.productCodeDropdown.classList.toggle('hidden'));
-        dom.productCodeSearch.addEventListener('input', () => {
-            const filter = dom.productCodeSearch.value.toUpperCase();
-            const labels = dom.productCodeOptions.getElementsByTagName('label');
-            Array.from(labels).forEach(label => {
-                const txtValue = label.textContent || label.innerText;
-                label.style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
-            });
-        });
-        document.addEventListener('click', (event) => {
-            if (!dom.productCodeButton.contains(event.target) && !dom.productCodeDropdown.contains(event.target)) {
-                dom.productCodeDropdown.classList.add('hidden');
-            }
-        });
+    <div id="it-tolerance" class="tab-content">
+        <div id="it-tolerance-wrapper">
+            <div class="it-container">
+                <h1>IT 공차 끼워맞춤 계산기 ⚙️</h1>
+                <div class="input-group">
+                    <label for="nominalSize">기준 치수 (mm):</label>
+                    <input type="number" id="nominalSize" placeholder="예: 50" required oninput="calculateFit()">
+                </div>
+                <div class="input-group">
+                    <label for="holeFit">구멍 기호 (예: H7):</label>
+                    <div class="flex-input">
+                        <select id="holeAlphabet" onchange="calculateFit()">
+                        </select>
+                        <input type="number" id="holeGrade" placeholder="IT 등급 (예: 7)" oninput="calculateFit()">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="shaftFit">축 기호 (예: g6):</label>
+                    <div class="flex-input">
+                        <select id="shaftAlphabet" onchange="calculateFit()">
+                        </select>
+                        <input type="number" id="shaftGrade" placeholder="IT 등급 (예: 6)" oninput="calculateFit()">
+                    </div>
+                </div>
+                <div id="result-container">
+                    <h2>계산 결과</h2>
+                    <p id="holeResult">구멍: </p>
+                    <p id="shaftResult">축: </p>
+                    <p id="fitType">끼워맞춤 종류: </p>
+                    <p id="clearanceRange">틈새/죔새 범위: </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        function setLanguage(lang) {
-            currentLanguage = lang;
-            const t = translations[lang];
-            document.querySelectorAll('[data-lang-key]').forEach(el => el.textContent = t[el.dataset.langKey]);
-            document.querySelectorAll('[data-lang-placeholder]').forEach(el => el.placeholder = t[el.dataset.langPlaceholder]);
-            document.querySelectorAll('#lang-switcher .lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`#lang-switcher .lang-btn[onclick="setLanguage('${lang}')"]`).classList.add('active');
-            populateDropdowns(uploadedCouplings);
-            updateProductCodeButtonText();
-            renderTableHeader();
-            displayResults();
-        }
-
-        function setView(view) {
-            currentView = view;
-            document.querySelectorAll('#view-switcher .view-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`#view-switcher .view-btn[onclick="setView('${view}')"]`).classList.add('active');
-            displayResults();
-        }
-
-        async function fetchGoogleSheetData() {
-            showStatusMessage(translations[currentLanguage].loading, true);
-            dom.searchButton.disabled = true;
-            try {
-                const spreadsheetId = FIXED_GOOGLE_SHEET_URL.match(/\/d\/([a-zA-Z0-9-_]+)/)[1];
-                const gid = FIXED_GOOGLE_SHEET_URL.match(/gid=([0-9]+)/) ? FIXED_GOOGLE_SHEET_URL.match(/gid=([0-9]+)/)[1] : 0;
-                const csvUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=csv&gid=${gid}`;
-                const response = await fetch(csvUrl);
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const csvText = await response.text();
-                const data = parseCsv(csvText);
-                uploadedCouplings = parseSheetData(data);
-                populateDropdowns(uploadedCouplings);
-                showStatusMessage(translations[currentLanguage].loadSuccess(uploadedCouplings.length), false);
-                dom.searchButton.disabled = false;
-                setTimeout(() => hideStatusMessage(), 3000);
-            } catch (error) {
-                console.error('Error fetching Google Sheet data:', error);
-                showStatusMessage('데이터를 불러오는 데 실패했습니다. URL을 확인하거나, 시트가 "웹에 게시"되었는지 확인해주세요.', false);
-                dom.searchButton.disabled = true;
-            }
-        }
-
-        function parseCsv(csvText) {
-            if (csvText.charCodeAt(0) === 0xFEFF) csvText = csvText.substring(1);
-            const rows = csvText.split(/\r?\n/).filter(row => row.trim() !== '');
-            return rows.map(row => {
-                const cells = []; let inQuote = false, currentCell = '';
-                for (let i = 0; i < row.length; i++) {
-                    const char = row[i];
-                    if (char === '"' && inQuote && row[i+1] === '"') { currentCell += '"'; i++; } 
-                    else if (char === '"') { inQuote = !inQuote; } 
-                    else if (char === ',' && !inQuote) { cells.push(currentCell.trim()); currentCell = ''; } 
-                    else { currentCell += char; }
-                }
-                cells.push(currentCell.trim()); return cells;
-            });
-        }
-
-        function parseNumber(value) {
-            if (value === null || value === '' || typeof value !== 'string') return null;
-            const cleanedValue = value.replace(/[^0-9.-]/g, '');
-            const parsed = parseFloat(cleanedValue);
-            return isNaN(parsed) ? null : parsed;
-        }
-
-        function parseSheetData(data) {
-            if (data.length < 2) return [];
-            const headers = data[0].map(h => h.trim());
-            const colMap = {'품명': 'code', 'TYPE': 'type', '체결TYPE': 'fastening_type', '외경': 'outer_dia', '길이': 'length', '최소내경': 'min_inner_dia', '최대내경': 'max_inner_dia', '허용/상용 토크': 'torque', '비틀림강성': 'torsional_stiffness', '허용 편각': 'angular_misalignment', '허용 편심': 'parallel_misalignment', '허용 엔드플레이': 'end_play', '이미지URL': 'image_url'};
-            return data.slice(1).map(row => {
-                if (row.length === 0 || !row[0]) return null;
-                const product = {};
-                headers.forEach((header, index) => {
-                    const propName = colMap[header];
-                    if (propName) {
-                        let value = row[index] !== undefined ? row[index].trim() : null;
-                        if (['outer_dia', 'length', 'min_inner_dia', 'max_inner_dia', 'torque', 'torsional_stiffness', 'angular_misalignment', 'parallel_misalignment'].includes(propName)) {
-                            product[propName] = parseNumber(value);
-                        } else { product[propName] = value; }
-                    }
-                });
-                return product;
-            }).filter(p => p);
-        }
-
-        function populateDropdowns(couplings) {
-            populateSelect(dom.couplingTypeSelect, couplings, 'type');
-            populateFasteningTypeDropdown();
-            populateProductCodeDropdown();
-        }
-
-        function populateFasteningTypeDropdown() {
-            const selectedType = dom.couplingTypeSelect.value;
-            let filtered = uploadedCouplings;
-            if (selectedType) filtered = uploadedCouplings.filter(c => c.type === selectedType);
-            populateSelect(dom.fasteningTypeSelect, filtered, 'fastening_type');
-        }
-
-        function populateSelect(selectElement, data, key) {
-            const uniqueValues = [...new Set(data.map(item => item[key]))].filter(Boolean).sort();
-            selectElement.innerHTML = `<option value="">${translations[currentLanguage].all}</option>`;
-            uniqueValues.forEach(value => {
-                const option = document.createElement('option');
-                option.value = value; option.textContent = value;
-                selectElement.appendChild(option);
-            });
-        }
-
-        function populateProductCodeDropdown() {
-            const selectedType = dom.couplingTypeSelect.value;
-            const selectedFasteningType = dom.fasteningTypeSelect.value;
-            let filtered = uploadedCouplings;
-            if (selectedType) filtered = filtered.filter(c => c.type === selectedType);
-            if (selectedFasteningType) filtered = filtered.filter(c => c.fastening_type === selectedFasteningType);
-            const uniqueCodes = [...new Set(filtered.map(item => item.code))].filter(Boolean).sort();
-            dom.productCodeOptions.innerHTML = '';
-            uniqueCodes.forEach(code => {
-                const optionDiv = document.createElement('label');
-                optionDiv.className = "block px-3 py-1 hover:bg-gray-100 cursor-pointer flex items-center";
-                optionDiv.innerHTML = `<input type="checkbox" class="mr-2" value="${code}"> ${code}`;
-                optionDiv.addEventListener('change', updateProductCodeButtonText);
-                dom.productCodeOptions.appendChild(optionDiv);
-            });
-            updateProductCodeButtonText();
-        }
-
-        function updateProductCodeButtonText() {
-            const checked = dom.productCodeOptions.querySelectorAll('input:checked');
-            const buttonText = dom.productCodeButton.querySelector('span');
-            if (checked.length === 0) buttonText.textContent = translations[currentLanguage].all;
-            else if (checked.length === 1) buttonText.textContent = checked[0].value;
-            else buttonText.textContent = translations[currentLanguage].selected(checked.length);
-        }
-
-        function searchCouplings() {
-            dom.resultsSection.classList.remove('hidden');
-            const t = translations[currentLanguage];
-
-            const innerDia1 = document.getElementById('inner-dia1').value ? parseFloat(document.getElementById('inner-dia1').value) : undefined;
-            const innerDia2 = document.getElementById('inner-dia2').value ? parseFloat(document.getElementById('inner-dia2').value) : undefined;
-            const minOuterDia = document.getElementById('min-outer-dia').value ? parseFloat(document.getElementById('min-outer-dia').value) : undefined;
-            let maxOuterDia = document.getElementById('max-outer-dia').value ? parseFloat(document.getElementById('max-outer-dia').value) : undefined;
-            const minLength = document.getElementById('min-length').value ? parseFloat(document.getElementById('min-length').value) : undefined;
-            let maxLength = document.getElementById('max-length').value ? parseFloat(document.getElementById('max-length').value) : undefined;
-            const maxTorque = document.getElementById('max-torque').value ? parseFloat(document.getElementById('max-torque').value) : undefined;
-            const safetyFactor = document.getElementById('safety-factor').value ? parseFloat(document.getElementById('safety-factor').value) : 1;
-            const type = dom.couplingTypeSelect.value;
-            const fasteningType = dom.fasteningTypeSelect.value;
-            const selectedCodes = Array.from(dom.productCodeOptions.querySelectorAll('input:checked')).map(cb => cb.value);
-
-            if (dom.enableToleranceCheckbox.checked) {
-                if (maxOuterDia !== undefined) maxOuterDia *= 1.1;
-                if (maxLength !== undefined) maxLength *= 1.1;
-            }
-            const requiredTorque = (maxTorque !== undefined && safetyFactor !== 0) ? maxTorque * safetyFactor : maxTorque;
-
-            if (uploadedCouplings.length === 0) { showStatusMessage(t.loading, true); return; }
-
-            lastFilteredResults = uploadedCouplings.filter(c => {
-                return (!type || (c.type && c.type.includes(type))) &&
-                       (!fasteningType || (c.fastening_type && c.fastening_type.includes(fasteningType))) &&
-                       (selectedCodes.length === 0 || selectedCodes.includes(c.code)) &&
-                       (innerDia1 === undefined || (c.min_inner_dia !== null && innerDia1 >= c.min_inner_dia && innerDia1 <= c.max_inner_dia)) &&
-                       (innerDia2 === undefined || (c.min_inner_dia !== null && innerDia2 >= c.min_inner_dia && innerDia2 <= c.max_inner_dia)) &&
-                       (minOuterDia === undefined || (c.outer_dia !== null && c.outer_dia >= minOuterDia)) &&
-                       (maxOuterDia === undefined || (c.outer_dia !== null && c.outer_dia <= maxOuterDia)) &&
-                       (minLength === undefined || (c.length !== null && c.length >= minLength)) &&
-                       (maxLength === undefined || (c.length !== null && c.length <= maxLength)) &&
-                       (requiredTorque === undefined || (c.torque !== null && c.torque >= requiredTorque));
-            });
-            displayResults();
-        }
-
-        function displayResults() {
-            hideStatusMessage();
-            const t = translations[currentLanguage];
-            if (currentView === 'card') {
-                dom.cardViewContainer.classList.remove('hidden');
-                dom.tableViewContainer.classList.add('hidden');
-                renderCards(lastFilteredResults);
-            } else {
-                dom.cardViewContainer.classList.add('hidden');
-                dom.tableViewContainer.classList.remove('hidden');
-                renderTable(lastFilteredResults);
-            }
-            if (lastFilteredResults.length === 0 && dom.resultsSection.classList.contains('hidden') === false) {
-                showStatusMessage(t.noResults, false);
-            }
-        }
-
-        function renderCards(data) {
-            dom.resultsContainer.innerHTML = '';
-            const t = translations[currentLanguage];
-            data.forEach(c => {
-                const card = document.createElement('div');
-                card.className = "bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200 flex flex-col overflow-hidden";
-                const innerDiaText = (c.min_inner_dia !== null && c.max_inner_dia !== null) ? (c.min_inner_dia === c.max_inner_dia ? `${c.min_inner_dia} mm` : `${c.min_inner_dia} ~ ${c.max_inner_dia} mm`) : '-';
-                const getDisplay = (val, unit) => (val !== null) ? `${val} ${unit}` : '-';
-                const placeholderImg = 'https://placehold.co/400x300/e2e8f0/94a3b8?text=No+Image';
-                card.innerHTML = `
-                    <img src="${c.image_url || placeholderImg}" alt="${c.code || '제품 이미지'}" onerror="this.onerror=null;this.src='${placeholderImg}';" class="w-full h-40 object-contain bg-gray-50">
-                    <div class="p-4 flex flex-col flex-grow">
-                        <h3 class="text-lg font-bold text-gray-800 text-center">${c.code || '-'}</h3>
-                        <p class="text-sm text-gray-600 mb-2 text-center">${t.productTypeInfo(c.type, c.fastening_type)}</p>
-                        <div class="text-sm text-gray-700 space-y-1 mt-auto pt-2 border-t mt-2">
-                            <p><span class="font-semibold">${t.innerDiaRange}:</span> ${innerDiaText}</p>
-                            <p><span class="font-semibold">${t.outerDia} (mm):</span> ${getDisplay(c.outer_dia, '')}</p>
-                            <p><span class="font-semibold">${t.length} (mm):</span> ${getDisplay(c.length, '')}</p>
-                            <p><span class="font-semibold">${t.torque} (N·m):</span> ${getDisplay(c.torque, '')}</p>
-                            <p><span class="font-semibold">${t.torsionalStiffness} (N·m/rad):</span> ${c.torsional_stiffness !== null ? c.torsional_stiffness.toLocaleString(t.locale) : '-'}</p>
-                            <p><span class="font-semibold">${t.angularMisalignment} (°):</span> ${getDisplay(c.angular_misalignment, '')}</p>
-                            <p><span class="font-semibold">${t.parallelMisalignment} (mm):</span> ${getDisplay(c.parallel_misalignment, '')}</p>
-                            <p><span class="font-semibold">${t.endPlay} (mm):</span> ${c.end_play || '-'}</p>
+    <div id="balance" class="tab-content">
+        <div id="balance-calculator-wrapper">
+            <div class="main-container">
+                <div class="common-inputs">
+                    <h2 class="text-3xl font-bold mb-4 text-gray-800 text-center">BALANCE 계산기</h2>
+                    <p class="text-gray-600 mb-8 text-center">
+                        ISO 21940-1 표준에 따라 회전체의 밸런스 품질 등급(G)과 관련 값을 계산합니다.
+                    </p>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="rotorMass">회전체 질량 (m, g)</label>
+                            <input type="number" id="rotorMass" value="10000" step="1">
                         </div>
-                    </div>`;
-                dom.resultsContainer.appendChild(card);
-            });
-        }
+                        <div class="input-group">
+                            <label for="rotorDiameter">회전체 외경 (d, mm)</label>
+                            <input type="number" id="rotorDiameter" value="100" step="1">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-bar">
+                    <button id="gGradeTab" class="active">1개 수정면</button>
+                    <button id="speedTab">최대 회전속도</button>
+                    <button id="gGradeCalculationTab">G등급 계산</button>
+                    <button id="coupleUnbalanceTab">2개 수정면</button>
+                </div>
+            
+                <div id="gGradeContent" class="balance-tab-content">
+                    <p class="text-gray-600 mb-8 text-center">
+                        G등급, 회전속도, 질량, 외경을 입력하여 허용 잔류 불평형 값을 계산해 줍니다.
+                    </p>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="gGradeValue">원하는 G등급 (mm/s)</label>
+                            <select id="gGradeValue">
+                                <option value="0.4">G0.4</option>
+                                <option value="1.0">G1.0</option>
+                                <option value="2.5" selected>G2.5</option>
+                                <option value="6.3">G6.3</option>
+                                <option value="16">G16</option>
+                                <option value="40">G40</option>
+                                <option value="100">G100</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="rotorSpeed">원하는 회전속도 (N, RPM)</label>
+                            <input type="number" id="rotorSpeed" value="1000" step="10">
+                        </div>
+                    </div>
+                    <div class="result-box">
+                        <h3>허용 잔여 불평형 결과</h3>
+                        <div class="result-item">
+                            <span class="result-label">각속도 (ω)</span>
+                            <span class="result-value" id="angularVelocity">0<span class="unit">rad/s</span></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">원주속도 (v)</span>
+                            <span class="result-value" id="circumferentialVelocity">0<span class="unit">m/s</span></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">허용 잔류 비불평형 (e<sub>per</sub>)</span>
+                            <span class="result-value" id="specificUnbalance">0<span class="unit">μm (g·mm/kg)</span></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">허용 잔류 불평형 (U<sub>per</sub>)</span>
+                            <span class="result-value" id="allowableUnbalance">0<span class="unit">g·mm</span></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">수정 질량 (Δm)</span>
+                            <span class="result-value" id="correctionMass">0<span class="unit">g</span></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="speedContent" class="balance-tab-content" style="display: none;">
+                    <p class="text-gray-600 mb-8 text-center">
+                        측정된 불평형 값과 원하는 G등급을 입력하여 해당 등급을 만족하는 최대 회전속도를 계산합니다.
+                    </p>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="measuredUnbalance">측정된 잔류 불평형 (U, g·mm)</label>
+                            <input type="number" id="measuredUnbalance" value="10" step="1">
+                        </div>
+                        <div class="input-group">
+                            <label for="desiredGGrade">원하는 G등급 (mm/s)</label>
+                            <select id="desiredGGrade">
+                                <option value="0.4">G0.4</option>
+                                <option value="1.0">G1.0</option>
+                                <option value="2.5" selected>G2.5</option>
+                                <option value="6.3">G6.3</option>
+                                <option value="16">G16</option>
+                                <option value="40">G40</option>
+                                <option value="100">G100</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="result-box">
+                        <h3>최대 허용 회전속도 결과</h3>
+                        <div class="result-item">
+                            <span class="result-label">허용 비불평형 (e<sub>per</sub>)</span>
+                            <span class="result-value" id="calculatedSpecificUnbalance">0<span class="unit">μm</span></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">최대 허용 각속도 (ω<sub>max</sub>)</span>
+                            <span class="result-value" id="maxAngularVelocity">0<span class="unit">rad/s</span></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">최대 회전속도 (N<sub>max</sub>)</span>
+                            <span class="result-value" id="maxRotorSpeed">0<span class="unit">RPM</span></span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div id="gGradeCalculationContent" class="balance-tab-content" style="display: none;">
+                    <p class="text-gray-600 mb-8 text-center">
+                        측정된 잔류 불평형 값과 원하는 회전속도를 입력하면, 가능한 G등급을 계산합니다.
+                    </p>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="gGradeCalcUnbalance">측정된 잔류 불평형 (U, g·mm)</label>
+                            <input type="number" id="gGradeCalcUnbalance" value="10" step="1">
+                        </div>
+                        <div class="input-group">
+                            <label for="gGradeCalcRpm">원하는 회전속도 (N, RPM)</label>
+                            <input type="number" id="gGradeCalcRpm" value="1000" step="10">
+                        </div>
+                    </div>
+                    <div class="result-box">
+                        <h3>가능한 G등급 결과</h3>
+                        <div class="result-item">
+                            <span class="result-label">가능한 G등급</span>
+                            <span class="result-value" id="possibleGGrade">0<span class="unit"> G (mm/s)</span></span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div id="coupleUnbalanceContent" class="balance-tab-content" style="display: none;">
+                    <p class="text-gray-600 mb-8 text-center">
+                        G등급, 회전속도, 질량, 외경 및 두 수정면 간 거리를 입력하여 각 수정면에 대한 커플 불평형 값을 계산합니다.
+                    </p>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="gGradeValueCouple">원하는 G등급 (mm/s)</label>
+                            <select id="gGradeValueCouple">
+                                <option value="0.4">G0.4</option>
+                                <option value="1.0">G1.0</option>
+                                <option value="2.5" selected>G2.5</option>
+                                <option value="6.3">G6.3</option>
+                                <option value="16">G16</option>
+                                <option value="40">G40</option>
+                                <option value="100">G100</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="rotorSpeedCouple">원하는 회전속도 (N, RPM)</label>
+                            <input type="number" id="rotorSpeedCouple" value="1000" step="10">
+                        </div>
+                        <div class="input-group col-span-2">
+                            <label for="planesDistance">두 수정면 간 거리 (l, mm)</label>
+                            <input type="number" id="planesDistance" value="500" step="1">
+                        </div>
+                    </div>
+                    <div class="result-box">
+                        <h3>커플 불평형 결과</h3>
+                        <div class="result-item">
+                            <span class="result-label">각속도 (ω)</span>
+                            <span class="result-value" id="angularVelocityCouple">0<span class="unit">rad/s</span></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">허용 잔류 비불평형 (e<sub>per</sub>)</span>
+                            <span class="result-value" id="specificUnbalanceCouple">0<span class="unit">μm (g·mm/kg)</span></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">각 수정면 허용 불평형 (U<sub>plane</sub>)</span>
+                            <span class="result-value" id="allowableUnbalanceCouple">0<span class="unit">g·mm</span></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">각 수정면 수정 질량 (Δm<sub>plane</sub>)</span>
+                            <span class="result-value" id="correctionMassPerPlane">0<span class="unit">g</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="balance-2" class="tab-content">
+        <div id="balance-2-wrapper">
+             <div class="calculator-wrapper">
+                <div class="tabs">
+                    <button class="tab-link-b2 active" onclick="openBalance2Tab(event, 'unbalanceCalc')">언밸런스 계산</button>
+                    <button class="tab-link-b2" onclick="openBalance2Tab(event, 'eccentricityCalc')">편심량 계산</button>
+                    <button class="tab-link-b2" onclick="openBalance2Tab(event, 'formulas')">관련 공식</button>
+                </div>
 
-        function renderTable(data) {
-            dom.tableBody.innerHTML = '';
-            const t = translations[currentLanguage];
-            const getDisplay = (val) => (val !== null) ? val : '-';
-            const placeholderImg = 'https://placehold.co/400x300/e2e8f0/94a3b8?text=No+Image';
-            data.forEach(c => {
-                const row = dom.tableBody.insertRow();
-                const innerDiaText = (c.min_inner_dia !== null && c.max_inner_dia !== null) ? (c.min_inner_dia === c.max_inner_dia ? `${c.min_inner_dia}` : `${c.min_inner_dia}~${c.max_inner_dia}`) : '-';
-                row.innerHTML = `
-                    <td><img src="${c.image_url || placeholderImg}" alt="${c.code}" onerror="this.onerror=null;this.src='${placeholderImg}';"></td>
-                    <td>${c.code || '-'}</td>
-                    <td>${c.type || '-'}</td>
-                    <td>${c.fastening_type || '-'}</td>
-                    <td>${innerDiaText}</td>
-                    <td>${getDisplay(c.outer_dia)}</td>
-                    <td>${getDisplay(c.length)}</td>
-                    <td>${getDisplay(c.torque)}</td>
-                    <td>${c.torsional_stiffness !== null ? c.torsional_stiffness.toLocaleString(t.locale) : '-'}</td>
-                    <td>${getDisplay(c.angular_misalignment)}</td>
-                    <td>${getDisplay(c.parallel_misalignment)}</td>
-                    <td>${c.end_play || '-'}</td>
-                `;
-            });
+                <div id="unbalanceCalc" class="tab-content-b2" style="display: block;">
+                    <div class="calculator">
+                        <h2>언밸런스 & G 등급</h2>
+                        <div class="input-group"><label for="mass">질량 (g)</label><input type="number" id="mass_b2" placeholder="예: 1000"></div>
+                        <div class="input-group"><label for="cg_x">무게중심 X 좌표 (mm)</label><input type="number" id="cg_x_b2" placeholder="예: 0.5"></div>
+                        <div class="input-group"><label for="cg_y">무게중심 Y 좌표 (mm)</label><input type="number" id="cg_y_b2" placeholder="예: -0.3"></div>
+                        <div class="input-group"><label for="rpm">회전속도 (RPM)</label><input type="number" id="rpm_b2" placeholder="예: 3600"></div>
+                        <div class="input-group"><label for="g_grade">목표 G 등급</label><select id="g_grade_b2"><option value="">-- 등급 선택 (선택 사항) --</option><option value="40">G40 (크랭크축 구동부)</option><option value="16">G16 (농업용 기계)</option><option value="6.3">G6.3 (일반 기계, 팬, 펌프)</option><option value="2.5">G2.5 (터빈, 엔진, 공작기계)</option><option value="1">G1 (연삭기 주축, 녹음기)</option><option value="0.4">G0.4 (정밀 스핀들, 자이로스코프)</option></select></div>
+                        <button class="calculate-btn" onclick="calculateUnbalance_b2()">계산하기</button>
+                        <div id="resultUnbalance_b2" class="result-box">결과가 여기에 표시됩니다.</div>
+                    </div>
+                </div>
+
+                <div id="eccentricityCalc" class="tab-content-b2" style="display: none;">
+                    <div class="calculator">
+                        <h2>편심량 계산</h2>
+                        <div class="input-group"><label for="measured_unbalance">측정 언밸런스 량 (g·mm)</label><input type="number" id="measured_unbalance_b2" placeholder="예: 583.10"></div>
+                        <div class="input-group"><label for="ecc_mass">질량 (g)</label><input type="number" id="ecc_mass_b2" placeholder="예: 1000"></div>
+                        <button class="calculate-btn" onclick="calculateEccentricity_b2()">계산하기</button>
+                        <div id="resultEccentricity_b2" class="result-box">결과가 여기에 표시됩니다.</div>
+                    </div>
+                </div>
+
+                <div id="formulas" class="tab-content-b2 formulas-page" style="display: none;">
+                    <h2>관련 공식</h2>
+                    <div class="formula-item">
+                        <h3>1. 편심량 (e)</h3>
+                        <p class="formula-text">e = √(x² + y²)</p>
+                        <ul>
+                            <li><b>e</b>: 회전 중심과 무게중심 간의 거리 (mm)</li>
+                            <li><b>x, y</b>: 무게중심의 좌표 (mm)</li>
+                        </ul>
+                    </div>
+                    <div class="formula-item">
+                        <h3>2. 언밸런스 량 (U)</h3>
+                        <p class="formula-text">U = m × e</p>
+                        <ul>
+                            <li><b>U</b>: 언밸런스 량 (g·mm)</li>
+                            <li><b>m</b>: 질량 (g)</li>
+                        </ul>
+                    </div>
+                    <div class="formula-item">
+                        <h3>3. 각속도 (ω)</h3>
+                        <p class="formula-text">ω = RPM × 2π / 60</p>
+                        <ul>
+                            <li><b>ω</b>: 각속도 (rad/s)</li>
+                            <li><b>RPM</b>: 분당 회전수</li>
+                        </ul>
+                    </div>
+                    <div class="formula-item">
+                        <h3>4. 언밸런스 Force (F)</h3>
+                        <p class="formula-text">F = U_kg·m × ω²</p>
+                        <ul>
+                            <li><b>F</b>: 힘 (N, Newton)</li>
+                            <li><b>U_kg·m</b>: kg·m 단위로 변환된 언밸런스 량</li>
+                        </ul>
+                    </div>
+                     <div class="formula-item">
+                        <h3>5. 비 불균형량 (e_specific)</h3>
+                        <p class="formula-text">e_specific = U / m_kg</p>
+                        <ul>
+                            <li><b>e_specific</b>: 비 불균형량 (g·mm/kg)</li>
+                            <li><b>U</b>: 언밸런스 량 (g·mm)</li>
+                            <li><b>m_kg</b>: kg 단위로 변환된 질량</li>
+                        </ul>
+                    </div>
+                    <div class="formula-item">
+                        <h3>6. G 등급 (G)</h3>
+                        <p class="formula-text">G = e_specific × ω / 1000</p>
+                        <ul>
+                            <li><b>G</b>: 밸런스 품질 등급</li>
+                        </ul>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+
+    <div class="mt-8 text-center text-xs text-gray-400 dark:text-gray-500">
+        VER-1.03
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Activate first main tab
+        document.querySelector('.tab-link').classList.add('active', 'border-indigo-500', 'text-indigo-600', 'dark:border-indigo-400', 'dark:text-indigo-400');
+        document.querySelector('.tab-content').classList.add('active');
+        
+        // Initialize calculators
+        populateSelectors();
+        initializeBalanceCalculator(); 
+        initializeBalance2Calculator();
+    });
+
+    // Main Tab functionality
+    function openTab(evt, tabName) {
+        let i, tabContent, tabLinks;
+        
+        tabContent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabContent.length; i++) {
+            tabContent[i].classList.remove('active');
         }
         
-        function renderTableHeader() {
-            const t = translations[currentLanguage];
-            dom.tableHeader.innerHTML = `
-                <th>${t.thImage}</th>
-                <th>${t.productCode}</th>
-                <th>${t.couplingType}</th>
-                <th>${t.fasteningType}</th>
-                <th>${t.innerDiaRange} (mm)</th>
-                <th>${t.outerDia} (mm)</th>
-                <th>${t.length} (mm)</th>
-                <th>${t.torque} (N·m)</th>
-                <th>${t.torsionalStiffness} (N·m/rad)</th>
-                <th>${t.angularMisalignment} (°)</th>
-                <th>${t.parallelMisalignment} (mm)</th>
-                <th>${t.endPlay} (mm)</th>
-            `;
+        tabLinks = document.getElementsByClassName("tab-link");
+        for (i = 0; i < tabLinks.length; i++) {
+            tabLinks[i].classList.remove('active', 'border-indigo-500', 'text-indigo-600', 'dark:border-indigo-400', 'dark:text-indigo-400');
         }
         
-        function resetForm() {
-            document.querySelectorAll('input[type=number], input[type=text]').forEach(input => input.value = '');
-            document.getElementById('safety-factor').value = '1';
-            dom.couplingTypeSelect.selectedIndex = 0;
-            dom.fasteningTypeSelect.selectedIndex = 0;
-            dom.enableToleranceCheckbox.checked = false;
-            populateProductCodeDropdown();
-            lastFilteredResults = [];
-            displayResults();
-            dom.resultsSection.classList.add('hidden');
+        document.getElementById(tabName).classList.add('active');
+        evt.currentTarget.classList.add('active', 'border-indigo-500', 'text-indigo-600', 'dark:border-indigo-400', 'dark:text-indigo-400');
+    }
+
+    // --- All Calculator Functions Below ---
+
+    // --- Inch-mm Converter Functions ---
+    function convert(unit) {
+        const inchInput = document.getElementById('inch-input');
+        const mmInput = document.getElementById('mm-input');
+        const fractionCheckbox = document.getElementById('fraction-checkbox');
+        const resultP = document.getElementById('result');
+        const inchToMm = 25.4;
+
+        if (unit === 'inch') {
+            const inches = parseFloat(inchInput.value);
+            if (!isNaN(inches)) {
+                mmInput.value = (inches * inchToMm).toFixed(4).replace(/\.0+$/, '');
+                if (fractionCheckbox.checked) {
+                    resultP.innerHTML = `<strong>${toFraction(inches)} inch</strong> → ${mmInput.value} mm`;
+                } else {
+                    resultP.innerHTML = `${inches} inch → <strong>${mmInput.value} mm</strong>`;
+                }
+            } else {
+                mmInput.value = '';
+                resultP.innerHTML = '';
+            }
+        } else if (unit === 'mm') {
+            const mm = parseFloat(mmInput.value);
+            if (!isNaN(mm)) {
+                const inches = parseFloat((mm / inchToMm).toFixed(4));
+                inchInput.value = inches.toString().replace(/\.0+$/, '');
+                if (fractionCheckbox.checked) {
+                    resultP.innerHTML = `${mm} mm → <strong>${toFraction(inches)} inch</strong>`;
+                } else {
+                    resultP.innerHTML = `${mm} mm → <strong>${inchInput.value} inch</strong>`;
+                }
+            } else {
+                inchInput.value = '';
+                resultP.innerHTML = '';
+            }
+        }
+    }
+    function toFraction(decimal) {
+        if (decimal === parseInt(decimal)) { return decimal.toString(); }
+        const tolerance = 1.0E-6;
+        let h1 = 1, h2 = 0, k1 = 0, k2 = 1;
+        let b = decimal;
+        do {
+            let a = Math.floor(b);
+            let aux = h1; h1 = a * h1 + h2; h2 = aux;
+            aux = k1; k1 = a * k1 + k2; k2 = aux;
+            b = 1 / (b - a);
+        } while (Math.abs(decimal - h1 / k1) > decimal * tolerance && k1 <= 64);
+
+        if (k1 > 64) {
+            const commonDenominators = [2, 4, 8, 16, 32, 64];
+            for (const den of commonDenominators) {
+                const num = Math.round(decimal * den);
+                if (Math.abs(decimal - num / den) < 0.01) {
+                    const gcdValue = gcd(num, den);
+                    return `${num / gcdValue}/${den / gcdValue}`;
+                }
+            }
+            return `${h2}/${k2}`;
+        }
+        
+        const wholePart = Math.floor(h1 / k1);
+        const numerator = h1 % k1;
+        if (numerator === 0) return wholePart.toString();
+        const finalGcd = gcd(numerator, k1);
+        const simpNum = numerator / finalGcd;
+        const simpDen = k1 / finalGcd;
+        if (wholePart > 0) { return `${wholePart} ${simpNum}/${simpDen}`; } 
+        else { return `${simpNum}/${simpDen}`; }
+    }
+    function gcd(a, b) { return b ? gcd(b, a % b) : a; }
+    function resetCalculator() {
+        document.getElementById('inch-input').value = '';
+        document.getElementById('mm-input').value = '';
+        document.getElementById('result').innerHTML = '';
+        document.getElementById('fraction-checkbox').checked = false;
+    }
+    function updateConversion() {
+        const inchValue = document.getElementById('inch-input').value;
+        if (inchValue) { convert('inch'); } 
+        else { const mmValue = document.getElementById('mm-input').value; if (mmValue) { convert('mm'); } }
+    }
+    function evaluateFraction(inputElement) {
+        let value = inputElement.value.trim();
+        if (!value.includes('/') && !value.includes(' ')) return;
+        let total = 0;
+        try {
+            const parts = value.split(' ').filter(p => p !== '');
+            let fractionPart = '';
+            if (parts.length > 2) return;
+            if (parts.length === 2) {
+                total += parseFloat(parts[0]);
+                fractionPart = parts[1];
+            } else {
+                fractionPart = parts[0];
+            }
+            if (fractionPart.includes('/')) {
+                const fractionParts = fractionPart.split('/');
+                if (fractionParts.length !== 2) return;
+                const numerator = parseFloat(fractionParts[0]);
+                const denominator = parseFloat(fractionParts[1]);
+                if (isNaN(numerator) || isNaN(denominator) || denominator === 0) { return; }
+                total += numerator / denominator;
+            } else {
+                total += parseFloat(fractionPart)
+            }
+            if (!isNaN(total)) {
+                inputElement.value = total.toString();
+                convert('inch');
+            }
+        } catch (error) { console.error("Error parsing fraction:", error); }
+    }
+
+    // --- Keyway Calculator Functions ---
+    const toleranceData = {
+        key_h9: [ { min: 0, max: 3, upper: 0, lower: -25 }, { min: 3, max: 6, upper: 0, lower: -30 }, { min: 6, max: 10, upper: 0, lower: -36 }, { min: 10, max: 18, upper: 0, lower: -43 }, { min: 18, max: 30, upper: 0, lower: -52 }, { min: 30, max: 50, upper: 0, lower: -62 }, { min: 50, max: 80, upper: 0, lower: -74 }, { min: 80, max: 120, upper: 0, lower: -87 }, ],
+        key_h11: [ { min: 0, max: 3, upper: 0, lower: -60 }, { min: 3, max: 6, upper: 0, lower: -75 }, { min: 6, max: 10, upper: 0, lower: -90 }, { min: 10, max: 18, upper: 0, lower: -110 }, { min: 18, max: 30, upper: 0, lower: -130 }, { min: 30, max: 50, upper: 0, lower: -160 }, ],
+        keyway_JS9: [ { min: 0, max: 3, val: 12.5 }, { min: 3, max: 6, val: 15 }, { min: 6, max: 10, val: 18 }, { min: 10, max: 18, val: 21.5 }, { min: 18, max: 30, val: 26 }, { min: 30, max: 50, val: 31 }, { min: 50, max: 80, val: 37 }, { min: 80, max: 120, val: 43 }, ],
+        keyway_H9: [ { min: 0, max: 3, upper: 25, lower: 0 }, { min: 3, max: 6, upper: 30, lower: 0 }, { min: 6, max: 10, upper: 36, lower: 0 }, { min: 10, max: 18, upper: 43, lower: 0 }, { min: 18, max: 30, upper: 52, lower: 0 }, { min: 30, max: 50, upper: 62, lower: 0 }, { min: 50, max: 80, upper: 74, lower: 0 }, { min: 80, max: 120, upper: 87, lower: 0 }, ],
+        keyway_E9: [ { min: 0, max: 3, upper: 39, lower: 14 }, { min: 3, max: 6, upper: 50, lower: 20 }, { min: 6, max: 10, upper: 61, lower: 25 }, { min: 10, max: 18, upper: 75, lower: 32 }, { min: 18, max: 30, upper: 92, lower: 40 }, { min: 30, max: 50, upper: 112, lower: 50 }, { min: 50, max: 80, upper: 134, lower: 60 }, { min: 80, max: 120, upper: 159, lower: 72 }, ]
+    };
+    function getWidthTolerances(b) {
+        let tolerances = { key_h9: 'N/A', keyway_E9: 'N/A', keyway_H9: 'N/A', keyway_JS9: 'N/A' };
+        const format = (val) => (val / 1000).toFixed(3);
+        const key_h9_spec = toleranceData.key_h9.find(t => b > t.min && b <= t.max);
+        if (key_h9_spec) tolerances.key_h9 = `${format(key_h9_spec.upper)} / ${format(key_h9_spec.lower)}`;
+        const keyway_H9_spec = toleranceData.keyway_H9.find(t => b > t.min && b <= t.max);
+        if (keyway_H9_spec) tolerances.keyway_H9 = `+${format(keyway_H9_spec.upper)} / ${format(keyway_H9_spec.lower)}`;
+        const keyway_E9_spec = toleranceData.keyway_E9.find(t => b > t.min && b <= t.max);
+        if (keyway_E9_spec) tolerances.keyway_E9 = `+${format(keyway_E9_spec.upper)} / +${format(keyway_E9_spec.lower)}`;
+        const keyway_JS9_spec = toleranceData.keyway_JS9.find(t => b > t.min && b <= t.max);
+        if (keyway_JS9_spec) tolerances.keyway_JS9 = `±${format(keyway_JS9_spec.val)}`;
+        return tolerances;
+    }
+    function getKeyHeightTolerance(h, toleranceClass) {
+        const format = (val) => (val / 1000).toFixed(3);
+        const toleranceTable = toleranceClass === 'h9' ? toleranceData.key_h9 : toleranceData.key_h11;
+        if (!toleranceTable) return 'N/A';
+        const spec = toleranceTable.find(t => h > t.min && h <= t.max);
+        if (spec) { return `${format(spec.upper)} / ${format(spec.lower)}`; }
+        return 'N/A';
+    }
+    function calculateKeyway() {
+        const keywayData = [ {d_min: 6, d_max: 8, b: 2, h: 2, t1: 1.2, t2: 1.0, r: '0.08 ~ 0.16'}, {d_min: 8, d_max: 10, b: 3, h: 3, t1: 1.8, t2: 1.4, r: '0.08 ~ 0.16'}, {d_min: 10, d_max: 12, b: 4, h: 4, t1: 2.5, t2: 1.8, r: '0.16 ~ 0.25'}, {d_min: 12, d_max: 17, b: 5, h: 5, t1: 3.0, t2: 2.3, r: '0.16 ~ 0.25'}, {d_min: 17, d_max: 22, b: 6, h: 6, t1: 3.5, t2: 2.8, r: '0.25 ~ 0.4'}, {d_min: 22, d_max: 30, b: 8, h: 7, t1: 4.0, t2: 3.3, r: '0.25 ~ 0.4'}, {d_min: 30, d_max: 38, b: 10, h: 8, t1: 5.0, t2: 3.3, r: '0.25 ~ 0.4'}, {d_min: 38, d_max: 44, b: 12, h: 8, t1: 5.0, t2: 3.3, r: '0.4 ~ 0.6'}, {d_min: 44, d_max: 50, b: 14, h: 9, t1: 5.5, t2: 3.8, r: '0.4 ~ 0.6'}, {d_min: 50, d_max: 58, b: 16, h: 10, t1: 6.0, t2: 4.3, r: '0.4 ~ 0.6'}, {d_min: 58, d_max: 65, b: 18, h: 11, t1: 7.0, t2: 4.4, r: '0.4 ~ 0.6'}, {d_min: 65, d_max: 75, b: 20, h: 12, t1: 7.5, t2: 4.9, r: '0.6 ~ 0.8'}, {d_min: 75, d_max: 85, b: 22, h: 14, t1: 9.0, t2: 5.4, r: '0.6 ~ 0.8'}, {d_min: 85, d_max: 95, b: 25, h: 14, t1: 9.0, t2: 5.4, r: '0.6 ~ 0.8'}, {d_min: 95, d_max: 110, b: 28, h: 16, t1: 10.0, t2: 6.4, r: '0.6 ~ 0.8'}, {d_min: 110, d_max: 130, b: 32, h: 18, t1: 11.0, t2: 7.4, r: '0.8 ~ 1.0'}, {d_min: 130, d_max: 150, b: 36, h: 20, t1: 12.0, t2: 8.4, r: '0.8 ~ 1.0'}, {d_min: 150, d_max: 170, b: 40, h: 22, t1: 13.0, t2: 9.4, r: '0.8 ~ 1.0'}, {d_min: 170, d_max: 200, b: 45, h: 25, t1: 15.0, t2: 10.4, r: '1.2 ~ 1.6'}, {d_min: 200, d_max: 230, b: 50, h: 28, t1: 17.0, t2: 11.4, r: '1.2 ~ 1.6'}, {d_min: 230, d_max: 260, b: 56, h: 32, t1: 20.0, t2: 12.4, r: '1.6 ~ 2.0'}, {d_min: 260, d_max: 290, b: 63, h: 32, t1: 20.0, t2: 12.4, r: '1.6 ~ 2.0'}, {d_min: 290, d_max: 330, b: 70, h: 36, t1: 22.0, t2: 14.4, r: '2.0 ~ 2.5'}, {d_min: 330, d_max: 380, b: 80, h: 40, t1: 25.0, t2: 15.4, r: '2.0 ~ 2.5'}, {d_min: 380, d_max: 440, b: 90, h: 45, t1: 28.0, t2: 17.4, r: '2.5 ~ 3.0'}, {d_min: 440, d_max: 500, b: 100, h: 50, t1: 31.0, t2: 19.5, r: '3.0 ~ 4.0'} ];
+        const diameterInput = document.getElementById('shaft-diameter');
+        const resultDiv = document.getElementById('keyway-result');
+        const d = parseFloat(diameterInput.value);
+        if (isNaN(d)) { resultDiv.innerHTML = ''; return; }
+        let spec = keywayData.find(s => d > s.d_min && d <= s.d_max);
+        
+        if (spec) {
+            const tolerances = getWidthTolerances(spec.b);
+            const h_tolerance_class = spec.b < 8 ? 'h9' : 'h11';
+            const h_tolerance_value = getKeyHeightTolerance(spec.h, h_tolerance_class);
+            let mainResultHtml = `<h4 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">표준 규격</h4><table class="w-full text-left border-collapse"><tbody class="align-top"><tr class="border-b dark:border-gray-600"><td class="py-2 pr-2 font-semibold">호칭:</td><td class="py-2 font-mono">KS ${spec.b}x${spec.h}</td></tr><tr class="border-b dark:border-gray-600"><td class="py-2 pr-2 font-semibold">키 너비 (b):</td><td class="py-2 font-mono">${spec.b} mm (허용차 h9: <span class="text-indigo-400">${tolerances.key_h9}</span>)</td></tr><tr class="border-b dark:border-gray-600"><td class="py-2 pr-2 font-semibold">키 높이 (h):</td><td class="py-2 font-mono">${spec.h} mm (허용차 ${h_tolerance_class}: <span class="text-indigo-400">${h_tolerance_value}</span>)</td></tr><tr class="border-b dark:border-gray-600"><td class="py-2 pr-2 font-semibold" rowspan="3">키홈 너비 (b):</td><td class="pt-2 pb-1 font-mono">허용차 E9: <span class="text-indigo-400">${tolerances.keyway_E9}</span></td></tr><tr class="border-b dark:border-gray-600"><td class="py-1 font-mono">허용차 H9: <span class="text-indigo-400">${tolerances.keyway_H9}</span></td></tr><tr class="border-b dark:border-gray-600"><td class="pt-1 pb-2 font-mono">허용차 JS9: <span class="text-indigo-400">${tolerances.keyway_JS9}</span></td></tr><tr class="border-b dark:border-gray-600"><td class="py-2 pr-2 font-semibold">축 홈 깊이 (t1):</td><td class="py-2 font-mono">${spec.t1} mm (+0.1 / 0)</td></tr><tr class="border-b dark:border-gray-600"><td class="py-2 pr-2 font-semibold">허브 홈 깊이 (t2):</td><td class="py-2 font-mono">${spec.t2} mm (+0.1 / 0)</td></tr><tr><td class="py-2 pr-2 font-semibold">홈 모서리 반지름 (r):</td><td class="py-2 font-mono">${spec.r} mm</td></tr></tbody></table>`;
+            let alternativeHtml = '';
+            if (d > 20 && d <= 25) {
+                const altSpec = {b: 7, h: 7, t1: 4.0, t2: 3.3, r: '0.25 ~ 0.4'};
+                const altTolerances = getWidthTolerances(altSpec.b);
+                const alt_h_tolerance_class = altSpec.b < 8 ? 'h9' : 'h11';
+                const alt_h_tolerance_value = getKeyHeightTolerance(altSpec.h, alt_h_tolerance_class);
+                alternativeHtml = `<div class="mt-6"><h4 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">※ 참고 규격 (7x7 키)</h4><table class="w-full text-left border-collapse"><tbody class="align-top"><tr class="border-b dark:border-gray-600"><td class="py-2 pr-2 font-semibold">호칭:</td><td class="py-2 font-mono">KS ${altSpec.b}x${altSpec.h}</td></tr><tr class="border-b dark:border-gray-600"><td class="py-2 pr-2 font-semibold">키 너비 (b):</td><td class="py-2 font-mono">${altSpec.b} mm (허용차 h9: <span class="text-indigo-400">${altTolerances.key_h9}</span>)</td></tr><tr class="border-b dark:border-gray-600"><td class="py-2 pr-2 font-semibold">키 높이 (h):</td><td class="py-2 font-mono">${altSpec.h} mm (허용차 ${alt_h_tolerance_class}: <span class="text-indigo-400">${alt_h_tolerance_value}</span>)</td></tr><tr class="border-b dark:border-gray-600"><td class="py-2 pr-2 font-semibold" rowspan="3">키홈 너비 (b):</td><td class="pt-2 pb-1 font-mono">허용차 E9: <span class="text-indigo-400">${altTolerances.keyway_E9}</span></td></tr><tr class="border-b dark:border-gray-600"><td class="py-1 font-mono">허용차 H9: <span class="text-indigo-400">${altTolerances.keyway_H9}</span></td></tr><tr class="border-b dark:border-gray-600"><td class="pt-1 pb-2 font-mono">허용차 JS9: <span class="text-indigo-400">${altTolerances.keyway_JS9}</span></td></tr><tr class="border-b dark:border-gray-600"><td class="py-2 pr-2 font-semibold">축 홈 깊이 (t1):</td><td class="py-2 font-mono">${altSpec.t1} mm (+0.1 / 0)</td></tr><tr class="border-b dark:border-gray-600"><td class="py-2 pr-2 font-semibold">허브 홈 깊이 (t2):</td><td class="py-2 font-mono">${altSpec.t2} mm (+0.1 / 0)</td></tr><tr><td class="py-2 pr-2 font-semibold">홈 모서리 반지름 (r):</td><td class="py-2 font-mono">${altSpec.r} mm</td></tr></tbody></table></div>`;
+            }
+            resultDiv.innerHTML = mainResultHtml + alternativeHtml;
+        } else if (d > 500 || d <= 6) {
+             resultDiv.innerHTML = '<p class="text-red-500">계산 범위를 벗어났습니다. (6mm 초과, 500mm 이하)</p>';
+        } else {
+            resultDiv.innerHTML = '<p class="text-gray-500">해당하는 규격을 찾을 수 없습니다.</p>';
+        }
+    }
+
+    // --- SPIDER Leg Calculator Functions ---
+    const spiderPresetData = { 'SJC-14': { pcd: 14.5, legs: 2, face: 13.95 }, 'SJC-20': { pcd: 22.33, legs: 2, face: 23.05 }, 'SJC-25': { pcd: 27.66, legs: 2, face: 28.8 }, 'SJC-30': { pcd: 30.48, legs: 2, face: 32.2 }, 'SJC-40': { pcd: 31.88, legs: 3, face: 23.2 }, 'SJC-48': { pcd: 39.5, legs: 4, face: 24 }, 'SJC-55': { pcd: 44.94, legs: 4, face: 25.7 }, 'SJC-65': { pcd: 51.78, legs: 4, face: 30.9 }, 'SJC-80': { pcd: 63.55, legs: 4, face: 37.68 }, 'SJC-90': { pcd: 74.5, legs: 4, face: 44.2 }, 'SJC-100': { pcd: 80.5, legs: 4, face: 47.45 } };
+    function fillSpiderData() {
+        const preset = document.getElementById('spider-preset').value;
+        const data = spiderPresetData[preset];
+        const pcdInput = document.getElementById('spider-pcd');
+        const legsInput = document.getElementById('spider-legs');
+        const faceDiameterInput = document.getElementById('spider-face-diameter');
+        if (data) {
+            pcdInput.value = data.pcd;
+            legsInput.value = data.legs;
+            faceDiameterInput.value = data.face;
+        } else {
+            pcdInput.value = '';
+            legsInput.value = '';
+            faceDiameterInput.value = '';
+        }
+        calculateSpiderLeg();
+    }
+    function calculateSpiderLeg() {
+        const pcd = parseFloat(document.getElementById('spider-pcd').value);
+        const legs = parseFloat(document.getElementById('spider-legs').value);
+        const faceDiameter = parseFloat(document.getElementById('spider-face-diameter').value);
+        const resultDiv = document.getElementById('spider-leg-result');
+        if (isNaN(pcd) || isNaN(legs) || isNaN(faceDiameter) || legs <= 0) {
+            resultDiv.innerHTML = ''; return;
+        }
+        const angleRad = (90 / legs) * (Math.PI / 180);
+        const faceCenterX = (pcd / 2) * Math.sin(angleRad);
+        const spiderThickness = (faceDiameter / 2 - faceCenterX) * 2;
+        if (spiderThickness < 0) {
+            resultDiv.innerHTML = '<p class="text-red-500">계산 결과가 유효하지 않습니다. (FACE 직경이 너무 작습니다)</p>'; return;
+        }
+        resultDiv.innerHTML = `<table class="w-full text-left border-collapse"><tbody><tr><td class="py-2 pr-2 font-semibold">SPIDER 중앙 두께:</td><td class="py-2 font-mono text-xl text-indigo-400 font-bold">${spiderThickness.toFixed(4)} mm</td></tr></tbody></table>`;
+    }
+    function resetSpiderCalculator() {
+        document.getElementById('spider-preset').value = '';
+        document.getElementById('spider-pcd').value = '';
+        document.getElementById('spider-legs').value = '';
+        document.getElementById('spider-face-diameter').value = '';
+        document.getElementById('spider-leg-result').innerHTML = '';
+    }
+
+    // --- IT Tolerance Functions ---
+    const it_values = { "3": { 1: 0.6, 2: 1, 3: 1.5, 4: 2.5, 5: 4, 6: 6, 7: 10, 8: 14, 9: 25, 10: 40, 11: 60, 12: 100, 13: 140, 14: 250, 15: 400, 16: 600 }, "6": { 1: 0.8, 2: 1.2, 3: 2, 4: 3, 5: 5, 6: 8, 7: 12, 8: 18, 9: 30, 10: 48, 11: 75, 12: 120, 13: 180, 14: 300, 15: 480, 16: 750 }, "10": { 1: 1, 2: 1.5, 3: 2.5, 4: 4, 5: 6, 6: 9, 7: 15, 8: 22, 9: 36, 10: 58, 11: 90, 12: 150, 13: 220, 14: 360, 15: 580, 16: 900 }, "18": { 1: 1.2, 2: 2, 3: 3, 4: 5, 5: 8, 6: 11, 7: 18, 8: 27, 9: 43, 10: 70, 11: 110, 12: 180, 13: 270, 14: 430, 15: 700, 16: 1100 }, "30": { 1: 1.5, 2: 2.5, 3: 4, 4: 6, 5: 9, 6: 13, 7: 21, 8: 33, 9: 52, 10: 84, 11: 130, 12: 210, 13: 330, 14: 520, 15: 840, 16: 1300 }, "50": { 1: 2, 2: 3, 3: 4, 4: 7, 5: 11, 6: 16, 7: 25, 8: 39, 9: 62, 10: 100, 11: 160, 12: 250, 13: 390, 14: 620, 15: 1000, 16: 1600 }, "80": { 1: 2.5, 2: 4, 3: 5, 4: 8, 5: 12, 6: 18, 7: 29, 8: 46, 9: 74, 10: 120, 11: 185, 12: 290, 13: 460, 14: 740, 15: 1200, 16: 1850 }, "120": { 1: 3.5, 2: 5, 3: 6, 4: 10, 5: 13, 6: 21, 7: 32, 8: 50, 9: 80, 10: 130, 11: 200, 12: 320, 13: 500, 14: 800, 15: 1300, 16: 2000 }, "180": { 1: 4.5, 2: 6, 3: 8, 4: 12, 5: 15, 6: 23, 7: 36, 8: 57, 9: 92, 10: 145, 11: 230, 12: 360, 13: 570, 14: 920, 15: 1450, 16: 2300 }, "250": { 1: 6, 2: 7, 3: 9, 4: 13, 5: 17, 6: 26, 7: 42, 8: 66, 9: 105, 10: 165, 11: 260, 12: 420, 13: 660, 14: 1050, 15: 1650, 16: 2600 }, "315": { 1: 7, 2: 8, 3: 10, 4: 15, 5: 19, 6: 29, 7: 47, 8: 75, 9: 120, 10: 185, 11: 290, 12: 470, 13: 750, 14: 1200, 15: 1850, 16: 2900 }, "400": { 1: 8, 2: 9, 3: 11, 4: 16, 5: 21, 6: 33, 7: 52, 8: 85, 9: 135, 10: 210, 11: 330, 12: 520, 13: 850, 14: 1350, 15: 2100, 16: 3300 }, "500": { 1: 9, 2: 10, 3: 12, 4: 18, 5: 23, 6: 36, 7: 58, 8: 95, 9: 155, 10: 240, 11: 380, 12: 580, 13: 950, 14: 1550, 15: 2400, 16: 3800 } };
+    const fd_shaft_table = { 'd': { 3: -20, 6: -30, 10: -40, 18: -50, 30: -65, 50: -80, 80: -100, 120: -120, 180: -140, 250: -160, 315: -185, 400: -210, 500: -230 }, 'e': { 3: -14, 6: -20, 10: -25, 18: -32, 30: -40, 50: -50, 80: -60, 120: -72, 180: -85, 250: -100, 315: -110, 400: -125, 500: -140 }, 'f': { 3: -6, 6: -10, 10: -13, 18: -16, 30: -20, 50: -25, 80: -30, 120: -36, 180: -43, 250: -50, 315: -56, 400: -63, 500: -70 }, 'g': { 3: -2, 6: -4, 10: -5, 18: -6, 30: -7, 50: -9, 80: -10, 120: -12, 180: -14, 250: -15, 315: -17, 400: -18, 500: -20 }, 'h': { 500: 0 }, 'js': { 500: 0 }, 'k': { 3: 0, 18: 0, 100: 1, 250: 2, 500: 3 }, 'm': { 40: 4, 100: 6, 250: 8, 500: 9 }, 'n': { 500: 5 }, 'p': { 3: 6, 6: 10, 10: 12, 18: 15, 30: 18, 50: 22, 80: 27, 120: 33, 180: 40, 250: 48, 315: 55, 400: 63, 500: 72 }, 'r': { 3: 10, 6: 14, 10: 16, 18: 19, 30: 23, 50: 28, 80: 35, 120: 43, 180: 52, 250: 62, 315: 72, 400: 82, 500: 95 }, 's': { 3: 14, 6: 19, 10: 21, 18: 25, 30: 30, 50: 36, 80: 45, 120: 55, 180: 66, 250: 79, 315: 91, 400: 105, 500: 120 }, 't': { 3: 23, 10: 28, 18: 34, 30: 40, 50: 48, 80: 58, 120: 70, 180: 84, 250: 100, 315: 115, 400: 135, 500: 155 }, 'u': { 3: 27, 10: 34, 18: 38, 30: 46, 50: 56, 80: 68, 120: 82, 180: 100, 250: 120, 315: 140, 400: 160, 500: 185 } };
+    const fd_shaft_k_special_ei = { 3: 0, 6: 1, 10: 1, 18: 2, 30: 2, 50: 3, 80: 4, 120: 4, 180: 5, 250: 6, 315: 8, 400: 10, 500: 12 };
+    const availableSymbols = { hole: ['D', 'E', 'F', 'G', 'H', 'JS', 'K', 'M', 'N', 'P', 'R', 'S', 'T', 'U'], shaft: ['d', 'e', 'f', 'g', 'h', 'js', 'k', 'm', 'n', 'p', 'r', 's', 't', 'u'] }
+    function getTableValue(symbol, nominalSize, table) {
+        if (!table[symbol]) return null;
+        const ranges = Object.keys(table[symbol]).map(Number).sort((a, b) => a - b);
+        for (const range of ranges) if (nominalSize <= range) return table[symbol][range];
+        return null;
+    }
+    function getFlatTableValue(nominalSize, table) {
+        const ranges = Object.keys(table).map(Number).sort((a, b) => a - b);
+        for (const range of ranges) if (nominalSize <= range) return table[range];
+        return null;
+    }
+    function getItValue(nominalSize, grade) {
+        let sizeRange;
+        if (nominalSize <= 3) sizeRange = "3";
+        else if (nominalSize <= 6) sizeRange = "6";
+        else if (nominalSize <= 10) sizeRange = "10";
+        else if (nominalSize <= 18) sizeRange = "18";
+        else if (nominalSize <= 30) sizeRange = "30";
+        else if (nominalSize <= 50) sizeRange = "50";
+        else if (nominalSize <= 80) sizeRange = "80";
+        else if (nominalSize <= 120) sizeRange = "120";
+        else if (nominalSize <= 180) sizeRange = "180";
+        else if (nominalSize <= 250) sizeRange = "250";
+        else if (nominalSize <= 315) sizeRange = "315";
+        else if (nominalSize <= 400) sizeRange = "400";
+        else if (nominalSize <= 500) sizeRange = "500";
+        else return null;
+        return it_values[sizeRange] ? it_values[sizeRange][grade] : null;
+    }
+    function getDelta(nominalSize, grade) {
+        if (grade <= 1) return 0;
+        const it_n = getItValue(nominalSize, grade);
+        const it_n_minus_1 = getItValue(nominalSize, grade - 1);
+        return (it_n !== null && it_n_minus_1 !== null) ? it_n - it_n_minus_1 : 0;
+    }
+    function populateSelectors() {
+        const holeSelect = document.getElementById('holeAlphabet');
+        const shaftSelect = document.getElementById('shaftAlphabet');
+        availableSymbols.hole.forEach(key => holeSelect.add(new Option(key, key)));
+        holeSelect.value = 'H';
+        availableSymbols.shaft.forEach(key => shaftSelect.add(new Option(key, key)));
+        shaftSelect.value = 'h';
+    }
+    function calculateFit() {
+        const nominalSize = parseFloat(document.getElementById('nominalSize').value);
+        if (isNaN(nominalSize)) return;
+        const resultElements = ['holeResult', 'shaftResult', 'fitType', 'clearanceRange'].reduce((acc, id) => ({...acc, [id]: document.getElementById(id)}), {});
+        Object.values(resultElements).forEach(el => {
+            el.innerHTML = el.id.replace('Result', ': ').replace('Range', ' 범위: ').replace('Type', ' 종류: ');
+            el.classList.remove('error');
+        });
+        let holeCalculated = false, shaftCalculated = false;
+        let holeUpper, holeLower, shaftUpper, shaftLower;
+        const holeAlphabet = document.getElementById('holeAlphabet').value;
+        const holeGrade = parseInt(document.getElementById('holeGrade').value);
+        if (holeAlphabet && !isNaN(holeGrade)) {
+            const holeTol = getItValue(nominalSize, holeGrade);
+            if (holeTol === null) {
+                resultElements.holeResult.textContent = "구멍: 해당 치수 또는 등급의 데이터를 찾을 수 없습니다.";
+                resultElements.holeResult.classList.add('error');
+            } else {
+                let ES, EI;
+                if ("DEFGH".includes(holeAlphabet)) {
+                    EI = (holeAlphabet === 'H') ? 0 : -getTableValue(holeAlphabet.toLowerCase(), nominalSize, fd_shaft_table);
+                    ES = EI + holeTol;
+                } else {
+                    if (holeAlphabet === 'JS') { ES = +holeTol / 2; EI = -holeTol / 2; }
+                    else if (holeAlphabet === 'K' && holeGrade <= 8) { EI = 0; ES = holeTol; }
+                    else if (holeAlphabet === 'N' && holeGrade > 8) { EI = 0; ES = holeTol; }
+                    else {
+                        let fd = -getTableValue(holeAlphabet.toLowerCase(), nominalSize, fd_shaft_table);
+                        let delta = 0;
+                        if (holeAlphabet === 'K' && holeGrade > 8) delta = getDelta(nominalSize, holeGrade);
+                        if (holeAlphabet === 'M' && holeGrade > 8) delta = getDelta(nominalSize, holeGrade);
+                        ES = fd + delta;
+                        EI = ES - holeTol;
+                    }
+                }
+                holeUpper = nominalSize + ES / 1000; holeLower = nominalSize + EI / 1000;
+                resultElements.holeResult.innerHTML = `<b>구멍 (${holeAlphabet}${holeGrade}):</b> ${holeLower.toFixed(3)} ~ ${holeUpper.toFixed(3)} mm<br><small>(공차역: ${EI >= 0 ? '+' : ''}${(EI/1000).toFixed(3)} / ${ES >= 0 ? '+' : ''}${(ES/1000).toFixed(3)})</small>`;
+                holeCalculated = true;
+            }
+        }
+        const shaftAlphabet = document.getElementById('shaftAlphabet').value;
+        const shaftGrade = parseInt(document.getElementById('shaftGrade').value);
+        if (shaftAlphabet && !isNaN(shaftGrade)) {
+            const shaftTol = getItValue(nominalSize, shaftGrade);
+             if (shaftTol === null) {
+                resultElements.shaftResult.textContent = "축: 해당 치수 또는 등급의 데이터를 찾을 수 없습니다.";
+                resultElements.shaftResult.classList.add('error');
+            } else {
+                let es, ei;
+                if ("defgh".includes(shaftAlphabet)) {
+                    es = getTableValue(shaftAlphabet, nominalSize, fd_shaft_table);
+                    ei = es - shaftTol;
+                } else {
+                    if (shaftAlphabet === 'js') { es = +shaftTol / 2; ei = -shaftTol / 2; }
+                    else if (shaftAlphabet === 'k' && shaftGrade <= 7) {
+                        ei = getFlatTableValue(nominalSize, fd_shaft_k_special_ei);
+                        es = ei + shaftTol;
+                    }
+                    else if (shaftAlphabet === 'n' && shaftGrade > 8) { es = 0; ei = -shaftTol; }
+                    else {
+                        let fd = getTableValue(shaftAlphabet, nominalSize, fd_shaft_table);
+                        let delta = 0;
+                        if (shaftAlphabet === 'k' && shaftGrade > 7) delta = getDelta(nominalSize, shaftGrade);
+                        if (shaftAlphabet === 'm' && shaftGrade > 7) delta = getDelta(nominalSize, shaftGrade);
+                        ei = fd + delta;
+                        es = ei + shaftTol;
+                    }
+                }
+                shaftUpper = nominalSize + es / 1000; shaftLower = nominalSize + ei / 1000;
+                resultElements.shaftResult.innerHTML = `<b>축 (${shaftAlphabet}${shaftGrade}):</b> ${shaftLower.toFixed(3)} ~ ${shaftUpper.toFixed(3)} mm<br><small>(공차역: ${ei >= 0 ? '+' : ''}${(ei/1000).toFixed(3)} / ${es >= 0 ? '+' : ''}${(es/1000).toFixed(3)})</small>`;
+                shaftCalculated = true;
+            }
+        }
+        if (holeCalculated && shaftCalculated) {
+            const maxClearance = holeUpper - shaftLower;
+            const minClearance = holeLower - shaftUpper;
+            if (minClearance >= 0) {
+                resultElements.fitType.innerHTML = '<b>끼워맞춤 종류:</b> <span style="color: #28a745;">헐거운 끼워맞춤</span>';
+                resultElements.clearanceRange.innerHTML = `<b>최소 틈새:</b> ${minClearance.toFixed(3)} mm <br><b>최대 틈새:</b> ${maxClearance.toFixed(3)} mm`;
+            } else if (maxClearance <= 0) {
+                resultElements.fitType.innerHTML = '<b>끼워맞춤 종류:</b> <span style="color: #dc3545;">억지 끼워맞춤</span>';
+                resultElements.clearanceRange.innerHTML = `<b>최소 죔새:</b> ${(-maxClearance).toFixed(3)} mm <br><b>최대 죔새:</b> ${(-minClearance).toFixed(3)} mm`;
+            } else {
+                resultElements.fitType.innerHTML = '<b>끼워맞춤 종류:</b> <span style="color: #ffc107;">중간 끼워맞춤</span>';
+                resultElements.clearanceRange.innerHTML = `<b>최대 틈새:</b> ${maxClearance.toFixed(3)} mm <br><b>최대 죔새:</b> ${(-minClearance).toFixed(3)} mm`;
+            }
+        }
+    }
+
+    // --- Balance Calculator Functions ---
+    function initializeBalanceCalculator() {
+        const tabs = { gGrade: document.getElementById('gGradeTab'), speed: document.getElementById('speedTab'), gGradeCalculation: document.getElementById('gGradeCalculationTab'), coupleUnbalance: document.getElementById('coupleUnbalanceTab') };
+        const contents = { gGrade: document.getElementById('gGradeContent'), speed: document.getElementById('speedContent'), gGradeCalculation: document.getElementById('gGradeCalculationContent'), coupleUnbalance: document.getElementById('coupleUnbalanceContent') };
+        const commonInputs = { rotorMass: document.getElementById('rotorMass'), rotorDiameter: document.getElementById('rotorDiameter') };
+        const gGradeInputs = { gGradeValue: document.getElementById('gGradeValue'), rotorSpeed: document.getElementById('rotorSpeed'), };
+        const gGradeOutputs = { angularVelocity: document.getElementById('angularVelocity'), circumferentialVelocity: document.getElementById('circumferentialVelocity'), specificUnbalance: document.getElementById('specificUnbalance'), allowableUnbalance: document.getElementById('allowableUnbalance'), correctionMass: document.getElementById('correctionMass') };
+        const speedInputs = { measuredUnbalance: document.getElementById('measuredUnbalance'), desiredGGrade: document.getElementById('desiredGGrade') };
+        const speedOutputs = { calculatedSpecificUnbalance: document.getElementById('calculatedSpecificUnbalance'), maxAngularVelocity: document.getElementById('maxAngularVelocity'), maxRotorSpeed: document.getElementById('maxRotorSpeed') };
+        const gGradeCalculationInputs = { measuredUnbalance: document.getElementById('gGradeCalcUnbalance'), desiredRpm: document.getElementById('gGradeCalcRpm') };
+        const gGradeCalculationOutputs = { possibleGGrade: document.getElementById('possibleGGrade') };
+        const coupleUnbalanceInputs = { gGradeValue: document.getElementById('gGradeValueCouple'), rotorSpeed: document.getElementById('rotorSpeedCouple'), planesDistance: document.getElementById('planesDistance') };
+        const coupleUnbalanceOutputs = { angularVelocity: document.getElementById('angularVelocityCouple'), specificUnbalance: document.getElementById('specificUnbalanceCouple'), allowableUnbalance: document.getElementById('allowableUnbalanceCouple'), correctionMassPerPlane: document.getElementById('correctionMassPerPlane') };
+        
+        function showTab(tabToShow) {
+            Object.values(tabs).forEach(tab => tab.classList.remove('active'));
+            Object.values(contents).forEach(content => content.style.display = 'none');
+            tabToShow.classList.add('active');
+            contents[tabToShow.id.replace('Tab', '')].style.display = 'block';
         }
 
-        function showStatusMessage(text, showSpinner) {
-            dom.statusTextSpan.textContent = text;
-            dom.statusMessageDiv.classList.remove('hidden');
-            dom.statusMessageDiv.querySelector('.spinner').style.display = showSpinner ? 'block' : 'none';
+        Object.values(tabs).forEach(tab => {
+            tab.addEventListener('click', () => {
+                showTab(tab);
+                switch(tab.id) {
+                    case 'gGradeTab': calculateGGrade(); break;
+                    case 'speedTab': calculateSpeed(); break;
+                    case 'gGradeCalculationTab': calculateGGradeFromInputs(); break;
+                    case 'coupleUnbalanceTab': calculateCoupleUnbalance(); break;
+                }
+            });
+        });
+
+        function calculateGGrade() {
+            try {
+                const gValue = parseFloat(gGradeInputs.gGradeValue.value);
+                const speed = parseFloat(gGradeInputs.rotorSpeed.value);
+                const mass_g = parseFloat(commonInputs.rotorMass.value);
+                const mass_kg = mass_g / 1000;
+                const diameter_mm = parseFloat(commonInputs.rotorDiameter.value);
+                const diameter_m = diameter_mm / 1000;
+                if (isNaN(gValue) || isNaN(speed) || isNaN(mass_g) || isNaN(diameter_mm) || speed <= 0 || mass_g <= 0 || diameter_mm <= 0) {
+                    gGradeOutputs.angularVelocity.innerHTML = '0<span class="unit">rad/s</span>'; gGradeOutputs.circumferentialVelocity.innerHTML = '0<span class="unit">m/s</span>'; gGradeOutputs.specificUnbalance.innerHTML = '0<span class="unit">μm (g·mm/kg)</span>'; gGradeOutputs.allowableUnbalance.innerHTML = '0<span class="unit">g·mm</span>'; gGradeOutputs.correctionMass.innerHTML = '0<span class="unit">g</span>'; return;
+                }
+                const angularVelocity = (speed * 2 * Math.PI) / 60;
+                gGradeOutputs.angularVelocity.innerHTML = `${angularVelocity.toFixed(2)}<span class="unit">rad/s</span>`;
+                const circumferentialVelocity = angularVelocity * (diameter_m / 2);
+                gGradeOutputs.circumferentialVelocity.innerHTML = `${circumferentialVelocity.toFixed(2)}<span class="unit">m/s</span>`;
+                const specificUnbalance_mm = gValue / angularVelocity;
+                const specificUnbalance_um = specificUnbalance_mm * 1000;
+                gGradeOutputs.specificUnbalance.innerHTML = `${specificUnbalance_um.toFixed(2)}<span class="unit">μm (g·mm/kg)</span>`;
+                const allowableUnbalance = mass_kg * specificUnbalance_um;
+                gGradeOutputs.allowableUnbalance.innerHTML = `${allowableUnbalance.toFixed(2)}<span class="unit">g·mm</span>`;
+                const correctionMass = allowableUnbalance / (diameter_mm / 2);
+                gGradeOutputs.correctionMass.innerHTML = `${correctionMass.toFixed(2)}<span class="unit">g</span>`;
+            } catch (e) { console.error("G-Grade calculation failed:", e); }
+        }
+        function calculateSpeed() {
+            try {
+                const measuredUnbalance = parseFloat(speedInputs.measuredUnbalance.value);
+                const desiredGGrade = parseFloat(speedInputs.desiredGGrade.value);
+                const mass_g = parseFloat(commonInputs.rotorMass.value);
+                const mass_kg = mass_g / 1000;
+                if (isNaN(measuredUnbalance) || isNaN(desiredGGrade) || isNaN(mass_g) || measuredUnbalance <= 0 || desiredGGrade <= 0 || mass_g <= 0) {
+                    speedOutputs.calculatedSpecificUnbalance.innerHTML = '0<span class="unit">μm</span>'; speedOutputs.maxAngularVelocity.innerHTML = '0<span class="unit">rad/s</span>'; speedOutputs.maxRotorSpeed.innerHTML = '0<span class="unit">RPM</span>'; return;
+                }
+                const calculatedSpecificUnbalance = measuredUnbalance / mass_kg;
+                speedOutputs.calculatedSpecificUnbalance.innerHTML = `${calculatedSpecificUnbalance.toFixed(2)}<span class="unit">μm</span>`;
+                const specificUnbalance_mm = calculatedSpecificUnbalance / 1000; 
+                const maxAngularVelocity = desiredGGrade / specificUnbalance_mm;
+                speedOutputs.maxAngularVelocity.innerHTML = `${maxAngularVelocity.toFixed(2)}<span class="unit">rad/s</span>`;
+                const maxRotorSpeed = (maxAngularVelocity * 60) / (2 * Math.PI);
+                speedOutputs.maxRotorSpeed.innerHTML = `${maxRotorSpeed.toFixed(2)}<span class="unit">RPM</span>`;
+            } catch (e) { console.error("Speed calculation failed:", e); }
+        }
+        function calculateGGradeFromInputs() {
+            try {
+                const measuredUnbalance = parseFloat(gGradeCalculationInputs.measuredUnbalance.value);
+                const desiredRpm = parseFloat(gGradeCalculationInputs.desiredRpm.value);
+                const mass_g = parseFloat(commonInputs.rotorMass.value);
+                const mass_kg = mass_g / 1000;
+                if (isNaN(measuredUnbalance) || isNaN(desiredRpm) || isNaN(mass_g) || measuredUnbalance <= 0 || desiredRpm <= 0 || mass_g <= 0) {
+                    gGradeCalculationOutputs.possibleGGrade.innerHTML = '0<span class="unit"> G (mm/s)</span>'; return;
+                }
+                const angularVelocity = (desiredRpm * 2 * Math.PI) / 60;
+                const specificUnbalance_um = measuredUnbalance / mass_kg;
+                const specificUnbalance_mm = specificUnbalance_um / 1000;
+                const possibleGGrade = specificUnbalance_mm * angularVelocity;
+                gGradeCalculationOutputs.possibleGGrade.innerHTML = `${possibleGGrade.toFixed(2)}<span class="unit"> G (mm/s)</span>`;
+            } catch (e) { console.error("G-Grade calculation from inputs failed:", e); }
+        }
+        function calculateCoupleUnbalance() {
+            try {
+                const gValue = parseFloat(coupleUnbalanceInputs.gGradeValue.value);
+                const speed = parseFloat(coupleUnbalanceInputs.rotorSpeed.value);
+                const mass_g = parseFloat(commonInputs.rotorMass.value);
+                const diameter_mm = parseFloat(commonInputs.rotorDiameter.value);
+                const planesDistance_mm = parseFloat(coupleUnbalanceInputs.planesDistance.value);
+                if (isNaN(gValue) || isNaN(speed) || isNaN(mass_g) || isNaN(diameter_mm) || isNaN(planesDistance_mm) || speed <= 0 || mass_g <= 0 || diameter_mm <= 0 || planesDistance_mm <= 0) {
+                    coupleUnbalanceOutputs.angularVelocity.innerHTML = '0<span class="unit">rad/s</span>'; coupleUnbalanceOutputs.specificUnbalance.innerHTML = '0<span class="unit">μm (g·mm/kg)</span>'; coupleUnbalanceOutputs.allowableUnbalance.innerHTML = '0<span class="unit">g·mm</span>'; coupleUnbalanceOutputs.correctionMassPerPlane.innerHTML = '0<span class="unit">g</span>'; return;
+                }
+                const angularVelocity = (speed * 2 * Math.PI) / 60;
+                coupleUnbalanceOutputs.angularVelocity.innerHTML = `${angularVelocity.toFixed(2)}<span class="unit">rad/s</span>`;
+                const specificUnbalance_mm = gValue / angularVelocity;
+                const specificUnbalance_um = specificUnbalance_mm * 1000;
+                coupleUnbalanceOutputs.specificUnbalance.innerHTML = `${specificUnbalance_um.toFixed(2)}<span class="unit">μm (g·mm/kg)</span>`;
+                const rotorMass_kg = mass_g / 1000;
+                const totalUnbalance_gmm = rotorMass_kg * specificUnbalance_um;
+                const rotorRadius_mm = diameter_mm / 2;
+                const allowableUnbalanceCouple = totalUnbalance_gmm * (rotorRadius_mm / planesDistance_mm);
+                coupleUnbalanceOutputs.allowableUnbalance.innerHTML = `${allowableUnbalanceCouple.toFixed(2)}<span class="unit">g·mm</span>`;
+                const correctionMassPerPlane = allowableUnbalanceCouple / rotorRadius_mm;
+                coupleUnbalanceOutputs.correctionMassPerPlane.innerHTML = `${correctionMassPerPlane.toFixed(2)}<span class="unit">g</span>`;
+            } catch (e) { console.error("Couple unbalance calculation failed:", e); }
         }
 
-        function hideStatusMessage() {
-            dom.statusMessageDiv.classList.add('hidden');
+        const allInputs = [ ...Object.values(commonInputs), ...Object.values(gGradeInputs), ...Object.values(speedInputs), ...Object.values(gGradeCalculationInputs), ...Object.values(coupleUnbalanceInputs) ];
+        allInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                calculateGGrade(); calculateSpeed(); calculateGGradeFromInputs(); calculateCoupleUnbalance();
+            });
+        });
+        calculateGGrade(); calculateSpeed(); calculateGGradeFromInputs(); calculateCoupleUnbalance();
+    }
+
+    // --- Balance-2 Calculator Functions ---
+    function initializeBalance2Calculator() {
+        // Initialize logic for the second balance calculator
+        document.querySelector('#balance-2-wrapper .tab-link-b2').classList.add('active');
+        document.querySelector('#balance-2-wrapper .tab-content-b2').style.display = 'block';
+    }
+
+    function openBalance2Tab(evt, tabName) {
+        let i, tabcontent, tablinks;
+        tabcontent = document.querySelectorAll("#balance-2-wrapper .tab-content-b2");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
         }
-    </script>
+        tablinks = document.querySelectorAll("#balance-2-wrapper .tab-link-b2");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.classList.add("active");
+    }
+
+    function calculateUnbalance_b2() {
+        const mass = parseFloat(document.getElementById('mass_b2').value);
+        const cg_x = parseFloat(document.getElementById('cg_x_b2').value);
+        const cg_y = parseFloat(document.getElementById('cg_y_b2').value);
+        const rpm = parseFloat(document.getElementById('rpm_b2').value);
+        const gGrade = parseFloat(document.getElementById('g_grade_b2').value);
+
+        if (isNaN(mass) || isNaN(cg_x) || isNaN(cg_y) || isNaN(rpm)) {
+            document.getElementById('resultUnbalance_b2').innerText = "질량, 좌표, RPM은 필수 입력 항목입니다.";
+            return;
+        }
+
+        const eccentricity = Math.sqrt(cg_x**2 + cg_y**2);
+        const unbalanceMagnitude = mass * eccentricity;
+        const unbalanceAngle = Math.atan2(cg_y, cg_x) * (180 / Math.PI);
+        
+        let unbalanceForce = 0;
+        let actualGGradeHTML = '';
+        let gradeResultHTML = '';
+        const angularVelocity = rpm * (2 * Math.PI) / 60;
+
+        if (rpm > 0) {
+            const unbalanceInKgM = unbalanceMagnitude / 1000000;
+            unbalanceForce = unbalanceInKgM * Math.pow(angularVelocity, 2);
+            const massInKg = mass / 1000;
+            const actualSpecificUnbalance = unbalanceMagnitude / massInKg;
+            const actualG = (actualSpecificUnbalance * angularVelocity) / 1000;
+            actualGGradeHTML = `<div class="result-section"><div>현재 G 등급: <strong>G${actualG.toFixed(2)}</strong></div></div>`;
+
+            if (!isNaN(gGrade) && gGrade > 0) {
+                const permissibleSpecificUnbalance = (gGrade * 1000) / angularVelocity;
+                let satisfaction = (actualSpecificUnbalance <= permissibleSpecificUnbalance) ? '<span style="color: green;">만족 (O)</span>' : '<span style="color: red;">불만족 (X)</span>';
+                gradeResultHTML = `<div class="result-section"><div>목표 G${gGrade} 등급 판별: ${satisfaction}</div><div class="grade-details"><b style="color:#333;">[ G 등급 계산 과정 ]</b><br><b>1. 허용 비 불균형량 (e_per)</b> = (G × 1000) / ω<br>&nbsp;&nbsp;= (${gGrade} × 1000) / ${angularVelocity.toFixed(2)} = <b>${permissibleSpecificUnbalance.toFixed(2)} g·mm/kg</b><br><b>2. 실제 비 불균형량 (e_act)</b> = U / m<br>&nbsp;&nbsp;= ${unbalanceMagnitude.toFixed(2)} g·mm / ${massInKg.toFixed(2)} kg = <b>${actualSpecificUnbalance.toFixed(2)} g·mm/kg</b></div></div>`;
+            }
+        }
+
+        document.getElementById('resultUnbalance_b2').innerHTML = `<div>언밸런스 량: <strong>${unbalanceMagnitude.toFixed(2)} g·mm</strong></div><div>언밸런스 위상각: <strong>${unbalanceAngle.toFixed(2)} °</strong></div><div class="result-section">언밸런스 Force: <strong>${unbalanceForce.toFixed(2)} N</strong></div>${actualGGradeHTML}${gradeResultHTML}`;
+    }
+
+    function calculateEccentricity_b2() {
+        const unbalance = parseFloat(document.getElementById('measured_unbalance_b2').value);
+        const mass = parseFloat(document.getElementById('ecc_mass_b2').value);
+
+        if (isNaN(unbalance) || isNaN(mass)) {
+            document.getElementById('resultEccentricity_b2').innerText = "모든 값을 숫자로 입력해주세요.";
+            return;
+        }
+        if (mass <= 0) {
+            document.getElementById('resultEccentricity_b2').innerText = "질량은 0보다 커야 합니다.";
+            return;
+        }
+        
+        const eccentricity = unbalance / mass;
+        
+        document.getElementById('resultEccentricity_b2').innerHTML = `
+            <div>회전축 편심량 (e): <strong>${eccentricity.toFixed(4)} mm</strong></div>
+            <div class="grade-details" style="text-align:center; margin-top:15px;">
+                무게중심이 회전축 중심으로부터 <br> 약 <strong>${eccentricity.toFixed(4)} mm</strong> 만큼 벗어나 있습니다.
+            </div>
+        `;
+    }
+</script>
+
 </body>
 </html>
 
