@@ -196,7 +196,7 @@
         }
         #balance-2-wrapper .formula-item { margin-bottom: 20px; }
         #balance-2-wrapper .formula-item h3 { color: #007bff; border-bottom: 2px solid #e9ecef; padding-bottom: 5px; margin-bottom: 10px; font-size: 1.2em; }
-        #balance-2-wrapper .formula-text { font-family: 'Courier New', Courier, monospace; font-size: 1.1em; font-weight: bold; background-color: #e9ecef; padding: 10px; border-radius: 5px; text-align: center; margin: 10px 0; }
+        #balance-2-wrapper .formula-text { font-family: 'Courier New', Courier, monospace; font-size: 1.1em; font-weight: bold; background-color: #e9ecef; padding: 10px; border-radius: 5px; text-align: center; margin: 10px 0; color: #1f2937; }
         #balance-2-wrapper .formula-item ul { list-style-type: none; padding-left: 0; font-size: 0.9em; }
         #balance-2-wrapper .formula-item ul li { margin-bottom: 5px; }
 
@@ -320,11 +320,11 @@
                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="balance-input-group">
                         <label for="rotorMass">회전체 질량 (m, g)</label>
-                        <input type="number" id="rotorMass" value="10000" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                        <input type="number" id="rotorMass" placeholder="10000" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                     </div>
                     <div class="balance-input-group">
                         <label for="rotorDiameter">회전체 외경 (d, mm)</label>
-                        <input type="number" id="rotorDiameter" value="100" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                        <input type="number" id="rotorDiameter" placeholder="100" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                     </div>
                 </div>
             </div>
@@ -353,7 +353,7 @@
                         </div>
                         <div class="balance-input-group">
                             <label for="rotorSpeed">원하는 회전속도 (N, RPM)</label>
-                            <input type="number" id="rotorSpeed" value="1000" step="10" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                            <input type="number" id="rotorSpeed" placeholder="1000" step="10" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                         </div>
                     </div>
                     <div class="balance-result-box">
@@ -385,7 +385,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="balance-input-group">
                             <label for="measuredUnbalance">측정된 잔류 불평형 (U, g·mm)</label>
-                            <input type="number" id="measuredUnbalance" value="10" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                            <input type="number" id="measuredUnbalance" placeholder="10" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                         </div>
                         <div class="balance-input-group">
                             <label for="desiredGGrade">원하는 G등급 (mm/s)</label>
@@ -421,11 +421,11 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="balance-input-group">
                             <label for="gGradeCalcUnbalance">측정된 잔류 불평형 (U, g·mm)</label>
-                            <input type="number" id="gGradeCalcUnbalance" value="10" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                            <input type="number" id="gGradeCalcUnbalance" placeholder="10" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                         </div>
                         <div class="balance-input-group">
                             <label for="gGradeCalcRpm">원하는 회전속도 (N, RPM)</label>
-                            <input type="number" id="gGradeCalcRpm" value="1000" step="10" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                            <input type="number" id="gGradeCalcRpm" placeholder="1000" step="10" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                         </div>
                     </div>
                     <div class="balance-result-box">
@@ -453,11 +453,11 @@
                         </div>
                         <div class="balance-input-group">
                             <label for="rotorSpeedCouple">원하는 회전속도 (N, RPM)</label>
-                            <input type="number" id="rotorSpeedCouple" value="1000" step="10" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                            <input type="number" id="rotorSpeedCouple" placeholder="1000" step="10" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                         </div>
                         <div class="balance-input-group sm:col-span-2">
                             <label for="planesDistance">두 수정면 간 거리 (l, mm)</label>
-                            <input type="number" id="planesDistance" value="500" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                            <input type="number" id="planesDistance" placeholder="500" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                         </div>
                     </div>
                     <div class="balance-result-box">
@@ -495,6 +495,7 @@
 
                 <div id="unbalanceCalcB2" class="tab-content-b2" style="display: block;">
                     <div class="calculator mt-4">
+                        <h2 class="text-xl font-semibold text-center text-gray-800 dark:text-gray-100 border-b pb-2 mb-6">언밸런스 & G 등급</h2>
                         <div class="space-y-4">
                             <div class="input-group"><label for="mass_b2" class="block text-sm font-medium">질량 (g)</label><input type="number" id="mass_b2" placeholder="예: 1000" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3"></div>
                             <div class="input-group"><label for="cg_x_b2" class="block text-sm font-medium">무게중심 X 좌표 (mm)</label><input type="number" id="cg_x_b2" placeholder="예: 0.5" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3"></div>
@@ -509,6 +510,7 @@
 
                 <div id="eccentricityCalcB2" class="tab-content-b2" style="display: none;">
                     <div class="calculator mt-4">
+                         <h2 class="text-xl font-semibold text-center text-gray-800 dark:text-gray-100 border-b pb-2 mb-6">편심량 계산</h2>
                         <div class="space-y-4">
                             <div class="input-group"><label for="measured_unbalance_b2" class="block text-sm font-medium">측정 언밸런스 량 (g·mm)</label><input type="number" id="measured_unbalance_b2" placeholder="예: 583.10" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3"></div>
                             <div class="input-group"><label for="ecc_mass_b2" class="block text-sm font-medium">질량 (g)</label><input type="number" id="ecc_mass_b2" placeholder="예: 1000" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3"></div>
@@ -520,6 +522,7 @@
 
                 <div id="formulasB2" class="tab-content-b2 formulas-page" style="display: none;">
                     <div class="mt-4 space-y-4">
+                         <h2 class="text-xl font-semibold text-center text-gray-800 dark:text-gray-100 border-b pb-2 mb-6">관련 공식</h2>
                         <div class="formula-item">
                             <h3>1. 편심량 (e)</h3>
                             <p class="formula-text">e = √(x² + y²)</p>
@@ -670,7 +673,7 @@
     </div>
 
     <div class="mt-8 text-center text-xs text-gray-400 dark:text-gray-500">
-        VER-1.05
+        VER-1.04
     </div>
 </div>
 
@@ -1093,10 +1096,10 @@
         function calculateGGrade() {
             try {
                 const gValue = parseFloat(gGradeInputs.gGradeValue.value);
-                const speed = parseFloat(gGradeInputs.rotorSpeed.value);
-                const mass_g = parseFloat(commonInputs.rotorMass.value);
+                const speed = parseFloat(gGradeInputs.rotorSpeed.placeholder);
+                const mass_g = parseFloat(commonInputs.rotorMass.placeholder);
                 const mass_kg = mass_g / 1000;
-                const diameter_mm = parseFloat(commonInputs.rotorDiameter.value);
+                const diameter_mm = parseFloat(commonInputs.rotorDiameter.placeholder);
                 const diameter_m = diameter_mm / 1000;
                 if (isNaN(gValue) || isNaN(speed) || isNaN(mass_g) || isNaN(diameter_mm) || speed <= 0 || mass_g <= 0 || diameter_mm <= 0) {
                     gGradeOutputs.angularVelocity.innerHTML = '0<span class="balance-unit">rad/s</span>'; gGradeOutputs.circumferentialVelocity.innerHTML = '0<span class="balance-unit">m/s</span>'; gGradeOutputs.specificUnbalance.innerHTML = '0<span class="balance-unit">μm (g·mm/kg)</span>'; gGradeOutputs.allowableUnbalance.innerHTML = '0<span class="balance-unit">g·mm</span>'; gGradeOutputs.correctionMass.innerHTML = '0<span class="balance-unit">g</span>'; return;
@@ -1116,9 +1119,9 @@
         }
         function calculateSpeed() {
             try {
-                const measuredUnbalance = parseFloat(speedInputs.measuredUnbalance.value);
+                const measuredUnbalance = parseFloat(speedInputs.measuredUnbalance.placeholder);
                 const desiredGGrade = parseFloat(speedInputs.desiredGGrade.value);
-                const mass_g = parseFloat(commonInputs.rotorMass.value);
+                const mass_g = parseFloat(commonInputs.rotorMass.placeholder);
                 const mass_kg = mass_g / 1000;
                 if (isNaN(measuredUnbalance) || isNaN(desiredGGrade) || isNaN(mass_g) || measuredUnbalance <= 0 || desiredGGrade <= 0 || mass_g <= 0) {
                     speedOutputs.calculatedSpecificUnbalance.innerHTML = '0<span class="balance-unit">μm</span>'; speedOutputs.maxAngularVelocity.innerHTML = '0<span class="balance-unit">rad/s</span>'; speedOutputs.maxRotorSpeed.innerHTML = '0<span class="balance-unit">RPM</span>'; return;
@@ -1134,9 +1137,9 @@
         }
         function calculateGGradeFromInputs() {
             try {
-                const measuredUnbalance = parseFloat(gGradeCalculationInputs.measuredUnbalance.value);
-                const desiredRpm = parseFloat(gGradeCalculationInputs.desiredRpm.value);
-                const mass_g = parseFloat(commonInputs.rotorMass.value);
+                const measuredUnbalance = parseFloat(gGradeCalculationInputs.measuredUnbalance.placeholder);
+                const desiredRpm = parseFloat(gGradeCalculationInputs.desiredRpm.placeholder);
+                const mass_g = parseFloat(commonInputs.rotorMass.placeholder);
                 const mass_kg = mass_g / 1000;
                 if (isNaN(measuredUnbalance) || isNaN(desiredRpm) || isNaN(mass_g) || measuredUnbalance <= 0 || desiredRpm <= 0 || mass_g <= 0) {
                     gGradeCalculationOutputs.possibleGGrade.innerHTML = '0<span class="balance-unit"> G (mm/s)</span>'; return;
@@ -1151,10 +1154,10 @@
         function calculateCoupleUnbalance() {
             try {
                 const gValue = parseFloat(coupleUnbalanceInputs.gGradeValue.value);
-                const speed = parseFloat(coupleUnbalanceInputs.rotorSpeed.value);
-                const mass_g = parseFloat(commonInputs.rotorMass.value);
-                const diameter_mm = parseFloat(commonInputs.rotorDiameter.value);
-                const planesDistance_mm = parseFloat(coupleUnbalanceInputs.planesDistance.value);
+                const speed = parseFloat(coupleUnbalanceInputs.rotorSpeed.placeholder);
+                const mass_g = parseFloat(commonInputs.rotorMass.placeholder);
+                const diameter_mm = parseFloat(commonInputs.rotorDiameter.placeholder);
+                const planesDistance_mm = parseFloat(coupleUnbalanceInputs.planesDistance.placeholder);
                 if (isNaN(gValue) || isNaN(speed) || isNaN(mass_g) || isNaN(diameter_mm) || isNaN(planesDistance_mm) || speed <= 0 || mass_g <= 0 || diameter_mm <= 0 || planesDistance_mm <= 0) {
                     coupleUnbalanceOutputs.angularVelocity.innerHTML = '0<span class="balance-unit">rad/s</span>'; coupleUnbalanceOutputs.specificUnbalance.innerHTML = '0<span class="balance-unit">μm (g·mm/kg)</span>'; coupleUnbalanceOutputs.allowableUnbalance.innerHTML = '0<span class="balance-unit">g·mm</span>'; coupleUnbalanceOutputs.correctionMassPerPlane.innerHTML = '0<span class="balance-unit">g</span>'; return;
                 }
