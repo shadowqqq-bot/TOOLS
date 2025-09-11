@@ -19,9 +19,6 @@
         /* Styles for IT Tolerance Tab */
         #it-tolerance-wrapper {
             font-family: 'Segoe UI', 'Malgun Gothic', Arial, sans-serif;
-            padding: 20px;
-            background-color: #f0f2f5;
-            border-radius: 0.75rem; /* Match container rounding */
         }
         #it-tolerance-wrapper .it-container {
             width: 100%;
@@ -99,73 +96,40 @@
             font-weight: bold;
         }
 
-        /* Styles for Balance Calculator Tab */
-        #balance-calculator-wrapper {
-             font-family: 'Inter', sans-serif;
-        }
-        #balance-calculator-wrapper .main-container {
-             max-width: 800px;
-             margin: 0 auto;
-             background-color: #fff;
-             border-radius: 1.5rem;
-             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        #balance-calculator-wrapper h2 {
-             font-weight: 700;
-             font-size: 2rem;
-             color: #1f2937;
-        }
-        #balance-calculator-wrapper p {
-             color: #6b7280;
-        }
-        #balance-calculator-wrapper .input-grid {
-             display: grid;
-             gap: 1.5rem;
-             margin-bottom: 2rem;
-        }
-         @media (min-width: 640px) {
-             #balance-calculator-wrapper .input-grid {
-                 grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        #balance-calculator-wrapper .input-group {
-             display: flex;
-             flex-direction: column;
-        }
-        #balance-calculator-wrapper .input-group label {
+        /* Styles for Balance & Balance-2 Calculator Tab */
+        .balance-input-group label {
              font-weight: 600;
              margin-bottom: 0.5rem;
              color: #4b5563;
         }
-        #balance-calculator-wrapper .input-group input, #balance-calculator-wrapper .input-group select {
+        .balance-input-group input, .balance-input-group select {
              padding: 0.75rem;
              border: 1px solid #d1d5db;
              border-radius: 0.75rem;
              text-align: right;
              transition: border-color 0.3s, box-shadow 0.3s;
+             width: 100%;
         }
-        #balance-calculator-wrapper .input-group input:focus, #balance-calculator-wrapper .input-group select:focus {
+        .balance-input-group input:focus, .balance-input-group select:focus {
              outline: none;
              border-color: #3b82f6;
              box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
-        #balance-calculator-wrapper .result-box {
+        .balance-result-box {
              background-color: #f9fafb;
              border: 1px solid #e5e7eb;
              border-radius: 1.5rem;
-             padding: 2rem;
-             margin-top: 2rem;
-             display: flex;
-             flex-direction: column;
-             align-items: center;
+             padding: 1.5rem;
+             margin-top: 1.5rem;
         }
-        #balance-calculator-wrapper .result-box h3 {
+        .balance-result-box h3 {
              font-weight: 700;
-             font-size: 1.5rem;
-             margin-bottom: 1.5rem;
+             font-size: 1.25rem;
+             margin-bottom: 1rem;
              color: #1f2937;
+             text-align:center;
         }
-        #balance-calculator-wrapper .result-item {
+        .balance-result-item {
              display: flex;
              justify-content: space-between;
              align-items: center;
@@ -173,163 +137,51 @@
              padding: 0.75rem 0;
              border-bottom: 1px dashed #e5e7eb;
         }
-        #balance-calculator-wrapper .result-item:last-child {
+        .balance-result-item:last-child {
              border-bottom: none;
         }
-        #balance-calculator-wrapper .result-label {
+        .balance-result-label {
              font-weight: 500;
              color: #6b7280;
         }
-        #balance-calculator-wrapper .result-value {
+        .balance-result-value {
              font-weight: 700;
              color: #111827;
              font-size: 1.125rem;
         }
-        #balance-calculator-wrapper .unit {
+        .balance-unit {
              font-size: 0.875rem;
              color: #9ca3af;
              margin-left: 0.25rem;
         }
-        #balance-calculator-wrapper .tab-bar {
+        .inner-tab-bar {
              display: flex;
              justify-content: center;
-             background-color: #fff;
-             border-radius: 1.5rem 1.5rem 0 0;
+             border-bottom: 1px solid #d1d5db;
         }
-        #balance-calculator-wrapper .tab-bar button {
+        .inner-tab-bar button {
              flex: 1;
-             padding: 1rem;
+             padding: 0.75rem 0.5rem;
              font-weight: 600;
              text-align: center;
              border-bottom: 3px solid transparent;
              color: #6b7280;
              transition: all 0.3s;
              background-color: transparent;
-             border-radius: 0;
+             font-size: 0.875rem;
         }
-        #balance-calculator-wrapper .tab-bar button.active {
+        .inner-tab-bar button.active {
              color: #3b82f6;
              border-bottom-color: #3b82f6;
         }
-        #balance-calculator-wrapper .balance-tab-content {
-             padding: 2rem 2.5rem;
-             background-color: #fff;
-             border-radius: 0 0 1.5rem 1.5rem;
+        .balance-tab-content {
+             padding-top: 1.5rem;
         }
-        #balance-calculator-wrapper .common-inputs {
-             padding: 2rem 2.5rem 0;
-             background-color: #fff;
-             border-radius: 1.5rem 1.5rem 0 0;
+        .b2-tab-content {
+             padding-top: 1.5rem;
+             display:none;
         }
 
-        /* Styles for Balance-2 Calculator Tab */
-        #balance-2-wrapper {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
-        }
-        #balance-2-wrapper .container {
-            width: 100%;
-            max-width: 400px;
-            padding: 20px;
-        }
-        #balance-2-wrapper .calculator-wrapper {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            overflow: hidden; /* 탭과 내용 경계 정리 */
-        }
-        #balance-2-wrapper .tabs {
-            display: flex;
-            background-color: #e9ecef;
-        }
-        #balance-2-wrapper .tab-link-b2 {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 600;
-            color: #555;
-            transition: background-color 0.3s, color 0.3s;
-            border-bottom: 3px solid transparent;
-        }
-        #balance-2-wrapper .tab-link-b2.active {
-            color: #007bff;
-            border-bottom: 3px solid #007bff;
-        }
-        #balance-2-wrapper .tab-content-b2 {
-            padding: 25px 35px;
-            display: none;
-        }
-        #balance-2-wrapper .calculator h2, #balance-2-wrapper .formulas-page h2 {
-            text-align: center;
-            color: #333;
-            margin-top: 0;
-            margin-bottom: 25px;
-            font-size: 1.5em;
-        }
-        #balance-2-wrapper .input-group {
-            margin-bottom: 18px;
-        }
-        #balance-2-wrapper .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 600;
-        }
-        #balance-2-wrapper .input-group input, #balance-2-wrapper .input-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 1em;
-            background-color: white;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        #balance-2-wrapper .input-group input:focus, #balance-2-wrapper .input-group select:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-            outline: none;
-        }
-        #balance-2-wrapper button.calculate-btn {
-            width: 100%;
-            padding: 14px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        #balance-2-wrapper button.calculate-btn:hover {
-            background-color: #0056b3;
-        }
-        #balance-2-wrapper .result-box {
-            margin-top: 25px;
-            padding: 18px;
-            background-color: #e9ecef;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 1.1em;
-            color: #333;
-            font-weight: bold;
-            line-height: 1.6;
-            min-height: 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        #balance-2-wrapper .result-section {
-             margin-top: 10px;
-             padding-top: 10px;
-             border-top: 1px solid #ccc;
-             width: 100%;
-        }
         #balance-2-wrapper .grade-details {
             font-size: 0.85em;
             color: #555;
@@ -347,6 +199,7 @@
         #balance-2-wrapper .formula-text { font-family: 'Courier New', Courier, monospace; font-size: 1.1em; font-weight: bold; background-color: #e9ecef; padding: 10px; border-radius: 5px; text-align: center; margin: 10px 0; }
         #balance-2-wrapper .formula-item ul { list-style-type: none; padding-left: 0; font-size: 0.9em; }
         #balance-2-wrapper .formula-item ul li { margin-bottom: 5px; }
+
     </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-4 sm:p-6 md:p-8">
@@ -425,61 +278,59 @@
     </div>
 
     <div id="it-tolerance" class="tab-content">
-        <div id="it-tolerance-wrapper">
-            <div class="it-container">
-                <h1>IT 공차 끼워맞춤 계산기 ⚙️</h1>
-                <div class="input-group">
-                    <label for="nominalSize">기준 치수 (mm):</label>
-                    <input type="number" id="nominalSize" placeholder="예: 50" required oninput="calculateFit()">
-                </div>
-                <div class="input-group">
-                    <label for="holeFit">구멍 기호 (예: H7):</label>
-                    <div class="flex-input">
-                        <select id="holeAlphabet" onchange="calculateFit()">
-                        </select>
-                        <input type="number" id="holeGrade" placeholder="IT 등급 (예: 7)" oninput="calculateFit()">
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label for="shaftFit">축 기호 (예: g6):</label>
-                    <div class="flex-input">
-                        <select id="shaftAlphabet" onchange="calculateFit()">
-                        </select>
-                        <input type="number" id="shaftGrade" placeholder="IT 등급 (예: 6)" oninput="calculateFit()">
-                    </div>
-                </div>
-                <div id="result-container">
-                    <h2>계산 결과</h2>
-                    <p id="holeResult">구멍: </p>
-                    <p id="shaftResult">축: </p>
-                    <p id="fitType">끼워맞춤 종류: </p>
-                    <p id="clearanceRange">틈새/죔새 범위: </p>
-                </div>
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">IT 공차 끼워맞춤 계산기</h2>
+        <div class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                 <div class="tool-group">
+                     <label for="nominalSize" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">기준 치수 (mm)</label>
+                     <input type="number" id="nominalSize" placeholder="예: 50" required oninput="calculateFit()" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                 </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                 <div class="tool-group">
+                     <label for="holeFit" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">구멍 기호 (예: H7)</label>
+                     <div class="flex">
+                         <select id="holeAlphabet" onchange="calculateFit()" class="block w-1/3 rounded-l-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3"></select>
+                         <input type="number" id="holeGrade" placeholder="IT 등급" oninput="calculateFit()" class="block w-2/3 rounded-r-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                     </div>
+                 </div>
+                 <div class="tool-group">
+                     <label for="shaftFit" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">축 기호 (예: g6)</label>
+                     <div class="flex">
+                         <select id="shaftAlphabet" onchange="calculateFit()" class="block w-1/3 rounded-l-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3"></select>
+                         <input type="number" id="shaftGrade" placeholder="IT 등급" oninput="calculateFit()" class="block w-2/3 rounded-r-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                     </div>
+                 </div>
+            </div>
+            <div id="result-container" class="mt-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <h3 class="text-lg font-medium text-gray-800 dark:text-gray-100 mb-2">계산 결과</h3>
+                <p id="holeResult" class="text-gray-800 dark:text-gray-200">구멍: </p>
+                <p id="shaftResult" class="text-gray-800 dark:text-gray-200">축: </p>
+                <p id="fitType" class="text-gray-800 dark:text-gray-200">끼워맞춤 종류: </p>
+                <p id="clearanceRange" class="text-gray-800 dark:text-gray-200">틈새/죔새 범위: </p>
             </div>
         </div>
     </div>
 
     <div id="balance" class="tab-content">
-        <div id="balance-calculator-wrapper">
-            <div class="main-container">
-                <div class="common-inputs">
-                    <h2 class="text-3xl font-bold mb-4 text-gray-800 text-center">BALANCE 계산기</h2>
-                    <p class="text-gray-600 mb-8 text-center">
-                        ISO 21940-1 표준에 따라 회전체의 밸런스 품질 등급(G)과 관련 값을 계산합니다.
-                    </p>
-                    <div class="input-grid">
-                        <div class="input-group">
-                            <label for="rotorMass">회전체 질량 (m, g)</label>
-                            <input type="number" id="rotorMass" value="10000" step="1">
-                        </div>
-                        <div class="input-group">
-                            <label for="rotorDiameter">회전체 외경 (d, mm)</label>
-                            <input type="number" id="rotorDiameter" value="100" step="1">
-                        </div>
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">BALANCE 계산기 (ISO 21940-1)</h2>
+        <div class="space-y-6">
+            <div class="tool-group bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                <h3 class="text-lg font-medium text-gray-800 dark:text-gray-100 mb-3">공통 입력값</h3>
+                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="balance-input-group">
+                        <label for="rotorMass">회전체 질량 (m, g)</label>
+                        <input type="number" id="rotorMass" value="10000" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                    </div>
+                    <div class="balance-input-group">
+                        <label for="rotorDiameter">회전체 외경 (d, mm)</label>
+                        <input type="number" id="rotorDiameter" value="100" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                     </div>
                 </div>
-                
-                <div class="tab-bar">
+            </div>
+            
+            <div class="tool-group bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                <div class="inner-tab-bar">
                     <button id="gGradeTab" class="active">1개 수정면</button>
                     <button id="speedTab">최대 회전속도</button>
                     <button id="gGradeCalculationTab">G등급 계산</button>
@@ -487,13 +338,10 @@
                 </div>
             
                 <div id="gGradeContent" class="balance-tab-content">
-                    <p class="text-gray-600 mb-8 text-center">
-                        G등급, 회전속도, 질량, 외경을 입력하여 허용 잔류 불평형 값을 계산해 줍니다.
-                    </p>
-                    <div class="input-grid">
-                        <div class="input-group">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="balance-input-group">
                             <label for="gGradeValue">원하는 G등급 (mm/s)</label>
-                            <select id="gGradeValue">
+                            <select id="gGradeValue" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                                 <option value="0.4">G0.4</option>
                                 <option value="1.0">G1.0</option>
                                 <option value="2.5" selected>G2.5</option>
@@ -503,48 +351,45 @@
                                 <option value="100">G100</option>
                             </select>
                         </div>
-                        <div class="input-group">
+                        <div class="balance-input-group">
                             <label for="rotorSpeed">원하는 회전속도 (N, RPM)</label>
-                            <input type="number" id="rotorSpeed" value="1000" step="10">
+                            <input type="number" id="rotorSpeed" value="1000" step="10" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                         </div>
                     </div>
-                    <div class="result-box">
+                    <div class="balance-result-box">
                         <h3>허용 잔여 불평형 결과</h3>
-                        <div class="result-item">
-                            <span class="result-label">각속도 (ω)</span>
-                            <span class="result-value" id="angularVelocity">0<span class="unit">rad/s</span></span>
+                        <div class="balance-result-item">
+                            <span class="balance-result-label">각속도 (ω)</span>
+                            <span class="balance-result-value" id="angularVelocity">0<span class="balance-unit">rad/s</span></span>
                         </div>
-                        <div class="result-item">
-                            <span class="result-label">원주속도 (v)</span>
-                            <span class="result-value" id="circumferentialVelocity">0<span class="unit">m/s</span></span>
+                        <div class="balance-result-item">
+                            <span class="balance-result-label">원주속도 (v)</span>
+                            <span class="balance-result-value" id="circumferentialVelocity">0<span class="balance-unit">m/s</span></span>
                         </div>
-                        <div class="result-item">
-                            <span class="result-label">허용 잔류 비불평형 (e<sub>per</sub>)</span>
-                            <span class="result-value" id="specificUnbalance">0<span class="unit">μm (g·mm/kg)</span></span>
+                        <div class="balance-result-item">
+                            <span class="balance-result-label">허용 잔류 비불평형 (e<sub>per</sub>)</span>
+                            <span class="balance-result-value" id="specificUnbalance">0<span class="balance-unit">μm (g·mm/kg)</span></span>
                         </div>
-                        <div class="result-item">
-                            <span class="result-label">허용 잔류 불평형 (U<sub>per</sub>)</span>
-                            <span class="result-value" id="allowableUnbalance">0<span class="unit">g·mm</span></span>
+                        <div class="balance-result-item">
+                            <span class="balance-result-label">허용 잔류 불평형 (U<sub>per</sub>)</span>
+                            <span class="balance-result-value" id="allowableUnbalance">0<span class="balance-unit">g·mm</span></span>
                         </div>
-                        <div class="result-item">
-                            <span class="result-label">수정 질량 (Δm)</span>
-                            <span class="result-value" id="correctionMass">0<span class="unit">g</span></span>
+                        <div class="balance-result-item">
+                            <span class="balance-result-label">수정 질량 (Δm)</span>
+                            <span class="balance-result-value" id="correctionMass">0<span class="balance-unit">g</span></span>
                         </div>
                     </div>
                 </div>
                 
                 <div id="speedContent" class="balance-tab-content" style="display: none;">
-                    <p class="text-gray-600 mb-8 text-center">
-                        측정된 불평형 값과 원하는 G등급을 입력하여 해당 등급을 만족하는 최대 회전속도를 계산합니다.
-                    </p>
-                    <div class="input-grid">
-                        <div class="input-group">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="balance-input-group">
                             <label for="measuredUnbalance">측정된 잔류 불평형 (U, g·mm)</label>
-                            <input type="number" id="measuredUnbalance" value="10" step="1">
+                            <input type="number" id="measuredUnbalance" value="10" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                         </div>
-                        <div class="input-group">
+                        <div class="balance-input-group">
                             <label for="desiredGGrade">원하는 G등급 (mm/s)</label>
-                            <select id="desiredGGrade">
+                            <select id="desiredGGrade" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                                 <option value="0.4">G0.4</option>
                                 <option value="1.0">G1.0</option>
                                 <option value="2.5" selected>G2.5</option>
@@ -555,54 +400,48 @@
                             </select>
                         </div>
                     </div>
-                    <div class="result-box">
+                    <div class="balance-result-box">
                         <h3>최대 허용 회전속도 결과</h3>
-                        <div class="result-item">
-                            <span class="result-label">허용 비불평형 (e<sub>per</sub>)</span>
-                            <span class="result-value" id="calculatedSpecificUnbalance">0<span class="unit">μm</span></span>
+                        <div class="balance-result-item">
+                            <span class="balance-result-label">허용 비불평형 (e<sub>per</sub>)</span>
+                            <span class="balance-result-value" id="calculatedSpecificUnbalance">0<span class="balance-unit">μm</span></span>
                         </div>
-                        <div class="result-item">
-                            <span class="result-label">최대 허용 각속도 (ω<sub>max</sub>)</span>
-                            <span class="result-value" id="maxAngularVelocity">0<span class="unit">rad/s</span></span>
+                        <div class="balance-result-item">
+                            <span class="balance-result-label">최대 허용 각속도 (ω<sub>max</sub>)</span>
+                            <span class="balance-result-value" id="maxAngularVelocity">0<span class="balance-unit">rad/s</span></span>
                         </div>
-                        <div class="result-item">
-                            <span class="result-label">최대 회전속도 (N<sub>max</sub>)</span>
-                            <span class="result-value" id="maxRotorSpeed">0<span class="unit">RPM</span></span>
+                        <div class="balance-result-item">
+                            <span class="balance-result-label">최대 회전속도 (N<sub>max</sub>)</span>
+                            <span class="balance-result-value" id="maxRotorSpeed">0<span class="balance-unit">RPM</span></span>
                         </div>
                     </div>
                 </div>
     
                 <div id="gGradeCalculationContent" class="balance-tab-content" style="display: none;">
-                    <p class="text-gray-600 mb-8 text-center">
-                        측정된 잔류 불평형 값과 원하는 회전속도를 입력하면, 가능한 G등급을 계산합니다.
-                    </p>
-                    <div class="input-grid">
-                        <div class="input-group">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="balance-input-group">
                             <label for="gGradeCalcUnbalance">측정된 잔류 불평형 (U, g·mm)</label>
-                            <input type="number" id="gGradeCalcUnbalance" value="10" step="1">
+                            <input type="number" id="gGradeCalcUnbalance" value="10" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                         </div>
-                        <div class="input-group">
+                        <div class="balance-input-group">
                             <label for="gGradeCalcRpm">원하는 회전속도 (N, RPM)</label>
-                            <input type="number" id="gGradeCalcRpm" value="1000" step="10">
+                            <input type="number" id="gGradeCalcRpm" value="1000" step="10" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                         </div>
                     </div>
-                    <div class="result-box">
+                    <div class="balance-result-box">
                         <h3>가능한 G등급 결과</h3>
-                        <div class="result-item">
-                            <span class="result-label">가능한 G등급</span>
-                            <span class="result-value" id="possibleGGrade">0<span class="unit"> G (mm/s)</span></span>
+                        <div class="balance-result-item">
+                            <span class="balance-result-label">가능한 G등급</span>
+                            <span class="balance-result-value" id="possibleGGrade">0<span class="balance-unit"> G (mm/s)</span></span>
                         </div>
                     </div>
                 </div>
     
                 <div id="coupleUnbalanceContent" class="balance-tab-content" style="display: none;">
-                    <p class="text-gray-600 mb-8 text-center">
-                        G등급, 회전속도, 질량, 외경 및 두 수정면 간 거리를 입력하여 각 수정면에 대한 커플 불평형 값을 계산합니다.
-                    </p>
-                    <div class="input-grid">
-                        <div class="input-group">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="balance-input-group">
                             <label for="gGradeValueCouple">원하는 G등급 (mm/s)</label>
-                            <select id="gGradeValueCouple">
+                            <select id="gGradeValueCouple" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                                 <option value="0.4">G0.4</option>
                                 <option value="1.0">G1.0</option>
                                 <option value="2.5" selected>G2.5</option>
@@ -612,32 +451,32 @@
                                 <option value="100">G100</option>
                             </select>
                         </div>
-                        <div class="input-group">
+                        <div class="balance-input-group">
                             <label for="rotorSpeedCouple">원하는 회전속도 (N, RPM)</label>
-                            <input type="number" id="rotorSpeedCouple" value="1000" step="10">
+                            <input type="number" id="rotorSpeedCouple" value="1000" step="10" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                         </div>
-                        <div class="input-group col-span-2">
+                        <div class="balance-input-group sm:col-span-2">
                             <label for="planesDistance">두 수정면 간 거리 (l, mm)</label>
-                            <input type="number" id="planesDistance" value="500" step="1">
+                            <input type="number" id="planesDistance" value="500" step="1" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
                         </div>
                     </div>
-                    <div class="result-box">
+                    <div class="balance-result-box">
                         <h3>커플 불평형 결과</h3>
-                        <div class="result-item">
-                            <span class="result-label">각속도 (ω)</span>
-                            <span class="result-value" id="angularVelocityCouple">0<span class="unit">rad/s</span></span>
+                        <div class="balance-result-item">
+                            <span class="balance-result-label">각속도 (ω)</span>
+                            <span class="balance-result-value" id="angularVelocityCouple">0<span class="balance-unit">rad/s</span></span>
                         </div>
-                        <div class="result-item">
-                            <span class="result-label">허용 잔류 비불평형 (e<sub>per</sub>)</span>
-                            <span class="result-value" id="specificUnbalanceCouple">0<span class="unit">μm (g·mm/kg)</span></span>
+                        <div class="balance-result-item">
+                            <span class="balance-result-label">허용 잔류 비불평형 (e<sub>per</sub>)</span>
+                            <span class="balance-result-value" id="specificUnbalanceCouple">0<span class="balance-unit">μm (g·mm/kg)</span></span>
                         </div>
-                        <div class="result-item">
-                            <span class="result-label">각 수정면 허용 불평형 (U<sub>plane</sub>)</span>
-                            <span class="result-value" id="allowableUnbalanceCouple">0<span class="unit">g·mm</span></span>
+                        <div class="balance-result-item">
+                            <span class="balance-result-label">각 수정면 허용 불평형 (U<sub>plane</sub>)</span>
+                            <span class="balance-result-value" id="allowableUnbalanceCouple">0<span class="balance-unit">g·mm</span></span>
                         </div>
-                        <div class="result-item">
-                            <span class="result-label">각 수정면 수정 질량 (Δm<sub>plane</sub>)</span>
-                            <span class="result-value" id="correctionMassPerPlane">0<span class="unit">g</span></span>
+                        <div class="balance-result-item">
+                            <span class="balance-result-label">각 수정면 수정 질량 (Δm<sub>plane</sub>)</span>
+                            <span class="balance-result-value" id="correctionMassPerPlane">0<span class="balance-unit">g</span></span>
                         </div>
                     </div>
                 </div>
@@ -646,8 +485,8 @@
     </div>
     
     <div id="balance-2" class="tab-content">
-        <div id="balance-2-wrapper">
-             <div class="calculator-wrapper">
+        <div id="balance-2-wrapper" class="space-y-6">
+             <div class="tool-group bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
                 <div class="tabs">
                     <button class="tab-link-b2 active" onclick="openBalance2Tab(event, 'unbalanceCalcB2')">언밸런스 계산</button>
                     <button class="tab-link-b2" onclick="openBalance2Tab(event, 'eccentricityCalcB2')">편심량 계산</button>
@@ -655,77 +494,80 @@
                 </div>
 
                 <div id="unbalanceCalcB2" class="tab-content-b2" style="display: block;">
-                    <div class="calculator">
-                        <h2>언밸런스 & G 등급</h2>
-                        <div class="input-group"><label for="mass_b2">질량 (g)</label><input type="number" id="mass_b2" placeholder="예: 1000"></div>
-                        <div class="input-group"><label for="cg_x_b2">무게중심 X 좌표 (mm)</label><input type="number" id="cg_x_b2" placeholder="예: 0.5"></div>
-                        <div class="input-group"><label for="cg_y_b2">무게중심 Y 좌표 (mm)</label><input type="number" id="cg_y_b2" placeholder="예: -0.3"></div>
-                        <div class="input-group"><label for="rpm_b2">회전속도 (RPM)</label><input type="number" id="rpm_b2" placeholder="예: 3600"></div>
-                        <div class="input-group"><label for="g_grade_b2">목표 G 등급</label><select id="g_grade_b2"><option value="">-- 등급 선택 (선택 사항) --</option><option value="40">G40 (크랭크축 구동부)</option><option value="16">G16 (농업용 기계)</option><option value="6.3">G6.3 (일반 기계, 팬, 펌프)</option><option value="2.5">G2.5 (터빈, 엔진, 공작기계)</option><option value="1">G1 (연삭기 주축, 녹음기)</option><option value="0.4">G0.4 (정밀 스핀들, 자이로스코프)</option></select></div>
-                        <button class="calculate-btn" onclick="calculateUnbalance_b2()">계산하기</button>
-                        <div id="resultUnbalance_b2" class="result-box">결과가 여기에 표시됩니다.</div>
+                    <div class="calculator mt-4">
+                        <div class="space-y-4">
+                            <div class="input-group"><label for="mass_b2" class="block text-sm font-medium">질량 (g)</label><input type="number" id="mass_b2" placeholder="예: 1000" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3"></div>
+                            <div class="input-group"><label for="cg_x_b2" class="block text-sm font-medium">무게중심 X 좌표 (mm)</label><input type="number" id="cg_x_b2" placeholder="예: 0.5" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3"></div>
+                            <div class="input-group"><label for="cg_y_b2" class="block text-sm font-medium">무게중심 Y 좌표 (mm)</label><input type="number" id="cg_y_b2" placeholder="예: -0.3" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3"></div>
+                            <div class="input-group"><label for="rpm_b2" class="block text-sm font-medium">회전속도 (RPM)</label><input type="number" id="rpm_b2" placeholder="예: 3600" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3"></div>
+                            <div class="input-group"><label for="g_grade_b2" class="block text-sm font-medium">목표 G 등급</label><select id="g_grade_b2" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3"><option value="">-- 등급 선택 (선택 사항) --</option><option value="40">G40 (크랭크축 구동부)</option><option value="16">G16 (농업용 기계)</option><option value="6.3">G6.3 (일반 기계, 팬, 펌프)</option><option value="2.5">G2.5 (터빈, 엔진, 공작기계)</option><option value="1">G1 (연삭기 주축, 녹음기)</option><option value="0.4">G0.4 (정밀 스핀들, 자이로스코프)</option></select></div>
+                            <button class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-700" onclick="calculateUnbalance_b2()">계산하기</button>
+                            <div id="resultUnbalance_b2" class="result-box">결과가 여기에 표시됩니다.</div>
+                        </div>
                     </div>
                 </div>
 
                 <div id="eccentricityCalcB2" class="tab-content-b2" style="display: none;">
-                    <div class="calculator">
-                        <h2>편심량 계산</h2>
-                        <div class="input-group"><label for="measured_unbalance_b2">측정 언밸런스 량 (g·mm)</label><input type="number" id="measured_unbalance_b2" placeholder="예: 583.10"></div>
-                        <div class="input-group"><label for="ecc_mass_b2">질량 (g)</label><input type="number" id="ecc_mass_b2" placeholder="예: 1000"></div>
-                        <button class="calculate-btn" onclick="calculateEccentricity_b2()">계산하기</button>
-                        <div id="resultEccentricity_b2" class="result-box">결과가 여기에 표시됩니다.</div>
+                    <div class="calculator mt-4">
+                        <div class="space-y-4">
+                            <div class="input-group"><label for="measured_unbalance_b2" class="block text-sm font-medium">측정 언밸런스 량 (g·mm)</label><input type="number" id="measured_unbalance_b2" placeholder="예: 583.10" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3"></div>
+                            <div class="input-group"><label for="ecc_mass_b2" class="block text-sm font-medium">질량 (g)</label><input type="number" id="ecc_mass_b2" placeholder="예: 1000" class="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3"></div>
+                            <button class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-700" onclick="calculateEccentricity_b2()">계산하기</button>
+                            <div id="resultEccentricity_b2" class="result-box">결과가 여기에 표시됩니다.</div>
+                        </div>
                     </div>
                 </div>
 
                 <div id="formulasB2" class="tab-content-b2 formulas-page" style="display: none;">
-                    <h2>관련 공식</h2>
-                    <div class="formula-item">
-                        <h3>1. 편심량 (e)</h3>
-                        <p class="formula-text">e = √(x² + y²)</p>
-                        <ul>
-                            <li><b>e</b>: 회전 중심과 무게중심 간의 거리 (mm)</li>
-                            <li><b>x, y</b>: 무게중심의 좌표 (mm)</li>
-                        </ul>
-                    </div>
-                    <div class="formula-item">
-                        <h3>2. 언밸런스 량 (U)</h3>
-                        <p class="formula-text">U = m × e</p>
-                        <ul>
-                            <li><b>U</b>: 언밸런스 량 (g·mm)</li>
-                            <li><b>m</b>: 질량 (g)</li>
-                        </ul>
-                    </div>
-                    <div class="formula-item">
-                        <h3>3. 각속도 (ω)</h3>
-                        <p class="formula-text">ω = RPM × 2π / 60</p>
-                        <ul>
-                            <li><b>ω</b>: 각속도 (rad/s)</li>
-                            <li><b>RPM</b>: 분당 회전수</li>
-                        </ul>
-                    </div>
-                    <div class="formula-item">
-                        <h3>4. 언밸런스 Force (F)</h3>
-                        <p class="formula-text">F = U_kg·m × ω²</p>
-                        <ul>
-                            <li><b>F</b>: 힘 (N, Newton)</li>
-                            <li><b>U_kg·m</b>: kg·m 단위로 변환된 언밸런스 량</li>
-                        </ul>
-                    </div>
-                     <div class="formula-item">
-                        <h3>5. 비 불균형량 (e_specific)</h3>
-                        <p class="formula-text">e_specific = U / m_kg</p>
-                        <ul>
-                            <li><b>e_specific</b>: 비 불균형량 (g·mm/kg)</li>
-                            <li><b>U</b>: 언밸런스 량 (g·mm)</li>
-                            <li><b>m_kg</b>: kg 단위로 변환된 질량</li>
-                        </ul>
-                    </div>
-                    <div class="formula-item">
-                        <h3>6. G 등급 (G)</h3>
-                        <p class="formula-text">G = e_specific × ω / 1000</p>
-                        <ul>
-                            <li><b>G</b>: 밸런스 품질 등급</li>
-                        </ul>
+                    <div class="mt-4 space-y-4">
+                        <div class="formula-item">
+                            <h3>1. 편심량 (e)</h3>
+                            <p class="formula-text">e = √(x² + y²)</p>
+                            <ul>
+                                <li><b>e</b>: 회전 중심과 무게중심 간의 거리 (mm)</li>
+                                <li><b>x, y</b>: 무게중심의 좌표 (mm)</li>
+                            </ul>
+                        </div>
+                        <div class="formula-item">
+                            <h3>2. 언밸런스 량 (U)</h3>
+                            <p class="formula-text">U = m × e</p>
+                            <ul>
+                                <li><b>U</b>: 언밸런스 량 (g·mm)</li>
+                                <li><b>m</b>: 질량 (g)</li>
+                            </ul>
+                        </div>
+                        <div class="formula-item">
+                            <h3>3. 각속도 (ω)</h3>
+                            <p class="formula-text">ω = RPM × 2π / 60</p>
+                            <ul>
+                                <li><b>ω</b>: 각속도 (rad/s)</li>
+                                <li><b>RPM</b>: 분당 회전수</li>
+                            </ul>
+                        </div>
+                        <div class="formula-item">
+                            <h3>4. 언밸런스 Force (F)</h3>
+                            <p class="formula-text">F = U_kg·m × ω²</p>
+                            <ul>
+                                <li><b>F</b>: 힘 (N, Newton)</li>
+                                <li><b>U_kg·m</b>: kg·m 단위로 변환된 언밸런스 량</li>
+                            </ul>
+                        </div>
+                         <div class="formula-item">
+                            <h3>5. 비 불균형량 (e_specific)</h3>
+                            <p class="formula-text">e_specific = U / m_kg</p>
+                            <ul>
+                                <li><b>e_specific</b>: 비 불균형량 (g·mm/kg)</li>
+                                <li><b>U</b>: 언밸런스 량 (g·mm)</li>
+                                <li><b>m_kg</b>: kg 단위로 변환된 질량</li>
+                            </ul>
+                        </div>
+                        <div class="formula-item">
+                            <h3>6. G 등급 (G)</h3>
+                            <p class="formula-text">G = e_specific × ω / 1000</p>
+                            <ul>
+                                <li><b>G</b>: 밸런스 품질 등급</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
              </div>
@@ -1257,19 +1099,19 @@
                 const diameter_mm = parseFloat(commonInputs.rotorDiameter.value);
                 const diameter_m = diameter_mm / 1000;
                 if (isNaN(gValue) || isNaN(speed) || isNaN(mass_g) || isNaN(diameter_mm) || speed <= 0 || mass_g <= 0 || diameter_mm <= 0) {
-                    gGradeOutputs.angularVelocity.innerHTML = '0<span class="unit">rad/s</span>'; gGradeOutputs.circumferentialVelocity.innerHTML = '0<span class="unit">m/s</span>'; gGradeOutputs.specificUnbalance.innerHTML = '0<span class="unit">μm (g·mm/kg)</span>'; gGradeOutputs.allowableUnbalance.innerHTML = '0<span class="unit">g·mm</span>'; gGradeOutputs.correctionMass.innerHTML = '0<span class="unit">g</span>'; return;
+                    gGradeOutputs.angularVelocity.innerHTML = '0<span class="balance-unit">rad/s</span>'; gGradeOutputs.circumferentialVelocity.innerHTML = '0<span class="balance-unit">m/s</span>'; gGradeOutputs.specificUnbalance.innerHTML = '0<span class="balance-unit">μm (g·mm/kg)</span>'; gGradeOutputs.allowableUnbalance.innerHTML = '0<span class="balance-unit">g·mm</span>'; gGradeOutputs.correctionMass.innerHTML = '0<span class="balance-unit">g</span>'; return;
                 }
                 const angularVelocity = (speed * 2 * Math.PI) / 60;
-                gGradeOutputs.angularVelocity.innerHTML = `${angularVelocity.toFixed(2)}<span class="unit">rad/s</span>`;
+                gGradeOutputs.angularVelocity.innerHTML = `${angularVelocity.toFixed(2)}<span class="balance-unit">rad/s</span>`;
                 const circumferentialVelocity = angularVelocity * (diameter_m / 2);
-                gGradeOutputs.circumferentialVelocity.innerHTML = `${circumferentialVelocity.toFixed(2)}<span class="unit">m/s</span>`;
+                gGradeOutputs.circumferentialVelocity.innerHTML = `${circumferentialVelocity.toFixed(2)}<span class="balance-unit">m/s</span>`;
                 const specificUnbalance_mm = gValue / angularVelocity;
                 const specificUnbalance_um = specificUnbalance_mm * 1000;
-                gGradeOutputs.specificUnbalance.innerHTML = `${specificUnbalance_um.toFixed(2)}<span class="unit">μm (g·mm/kg)</span>`;
+                gGradeOutputs.specificUnbalance.innerHTML = `${specificUnbalance_um.toFixed(2)}<span class="balance-unit">μm (g·mm/kg)</span>`;
                 const allowableUnbalance = mass_kg * specificUnbalance_um;
-                gGradeOutputs.allowableUnbalance.innerHTML = `${allowableUnbalance.toFixed(2)}<span class="unit">g·mm</span>`;
+                gGradeOutputs.allowableUnbalance.innerHTML = `${allowableUnbalance.toFixed(2)}<span class="balance-unit">g·mm</span>`;
                 const correctionMass = allowableUnbalance / (diameter_mm / 2);
-                gGradeOutputs.correctionMass.innerHTML = `${correctionMass.toFixed(2)}<span class="unit">g</span>`;
+                gGradeOutputs.correctionMass.innerHTML = `${correctionMass.toFixed(2)}<span class="balance-unit">g</span>`;
             } catch (e) { console.error("G-Grade calculation failed:", e); }
         }
         function calculateSpeed() {
@@ -1279,15 +1121,15 @@
                 const mass_g = parseFloat(commonInputs.rotorMass.value);
                 const mass_kg = mass_g / 1000;
                 if (isNaN(measuredUnbalance) || isNaN(desiredGGrade) || isNaN(mass_g) || measuredUnbalance <= 0 || desiredGGrade <= 0 || mass_g <= 0) {
-                    speedOutputs.calculatedSpecificUnbalance.innerHTML = '0<span class="unit">μm</span>'; speedOutputs.maxAngularVelocity.innerHTML = '0<span class="unit">rad/s</span>'; speedOutputs.maxRotorSpeed.innerHTML = '0<span class="unit">RPM</span>'; return;
+                    speedOutputs.calculatedSpecificUnbalance.innerHTML = '0<span class="balance-unit">μm</span>'; speedOutputs.maxAngularVelocity.innerHTML = '0<span class="balance-unit">rad/s</span>'; speedOutputs.maxRotorSpeed.innerHTML = '0<span class="balance-unit">RPM</span>'; return;
                 }
                 const calculatedSpecificUnbalance = measuredUnbalance / mass_kg;
-                speedOutputs.calculatedSpecificUnbalance.innerHTML = `${calculatedSpecificUnbalance.toFixed(2)}<span class="unit">μm</span>`;
+                speedOutputs.calculatedSpecificUnbalance.innerHTML = `${calculatedSpecificUnbalance.toFixed(2)}<span class="balance-unit">μm</span>`;
                 const specificUnbalance_mm = calculatedSpecificUnbalance / 1000; 
                 const maxAngularVelocity = desiredGGrade / specificUnbalance_mm;
-                speedOutputs.maxAngularVelocity.innerHTML = `${maxAngularVelocity.toFixed(2)}<span class="unit">rad/s</span>`;
+                speedOutputs.maxAngularVelocity.innerHTML = `${maxAngularVelocity.toFixed(2)}<span class="balance-unit">rad/s</span>`;
                 const maxRotorSpeed = (maxAngularVelocity * 60) / (2 * Math.PI);
-                speedOutputs.maxRotorSpeed.innerHTML = `${maxRotorSpeed.toFixed(2)}<span class="unit">RPM</span>`;
+                speedOutputs.maxRotorSpeed.innerHTML = `${maxRotorSpeed.toFixed(2)}<span class="balance-unit">RPM</span>`;
             } catch (e) { console.error("Speed calculation failed:", e); }
         }
         function calculateGGradeFromInputs() {
@@ -1297,13 +1139,13 @@
                 const mass_g = parseFloat(commonInputs.rotorMass.value);
                 const mass_kg = mass_g / 1000;
                 if (isNaN(measuredUnbalance) || isNaN(desiredRpm) || isNaN(mass_g) || measuredUnbalance <= 0 || desiredRpm <= 0 || mass_g <= 0) {
-                    gGradeCalculationOutputs.possibleGGrade.innerHTML = '0<span class="unit"> G (mm/s)</span>'; return;
+                    gGradeCalculationOutputs.possibleGGrade.innerHTML = '0<span class="balance-unit"> G (mm/s)</span>'; return;
                 }
                 const angularVelocity = (desiredRpm * 2 * Math.PI) / 60;
                 const specificUnbalance_um = measuredUnbalance / mass_kg;
                 const specificUnbalance_mm = specificUnbalance_um / 1000;
                 const possibleGGrade = specificUnbalance_mm * angularVelocity;
-                gGradeCalculationOutputs.possibleGGrade.innerHTML = `${possibleGGrade.toFixed(2)}<span class="unit"> G (mm/s)</span>`;
+                gGradeCalculationOutputs.possibleGGrade.innerHTML = `${possibleGGrade.toFixed(2)}<span class="balance-unit"> G (mm/s)</span>`;
             } catch (e) { console.error("G-Grade calculation from inputs failed:", e); }
         }
         function calculateCoupleUnbalance() {
@@ -1314,20 +1156,20 @@
                 const diameter_mm = parseFloat(commonInputs.rotorDiameter.value);
                 const planesDistance_mm = parseFloat(coupleUnbalanceInputs.planesDistance.value);
                 if (isNaN(gValue) || isNaN(speed) || isNaN(mass_g) || isNaN(diameter_mm) || isNaN(planesDistance_mm) || speed <= 0 || mass_g <= 0 || diameter_mm <= 0 || planesDistance_mm <= 0) {
-                    coupleUnbalanceOutputs.angularVelocity.innerHTML = '0<span class="unit">rad/s</span>'; coupleUnbalanceOutputs.specificUnbalance.innerHTML = '0<span class="unit">μm (g·mm/kg)</span>'; coupleUnbalanceOutputs.allowableUnbalance.innerHTML = '0<span class="unit">g·mm</span>'; coupleUnbalanceOutputs.correctionMassPerPlane.innerHTML = '0<span class="unit">g</span>'; return;
+                    coupleUnbalanceOutputs.angularVelocity.innerHTML = '0<span class="balance-unit">rad/s</span>'; coupleUnbalanceOutputs.specificUnbalance.innerHTML = '0<span class="balance-unit">μm (g·mm/kg)</span>'; coupleUnbalanceOutputs.allowableUnbalance.innerHTML = '0<span class="balance-unit">g·mm</span>'; coupleUnbalanceOutputs.correctionMassPerPlane.innerHTML = '0<span class="balance-unit">g</span>'; return;
                 }
                 const angularVelocity = (speed * 2 * Math.PI) / 60;
-                coupleUnbalanceOutputs.angularVelocity.innerHTML = `${angularVelocity.toFixed(2)}<span class="unit">rad/s</span>`;
+                coupleUnbalanceOutputs.angularVelocity.innerHTML = `${angularVelocity.toFixed(2)}<span class="balance-unit">rad/s</span>`;
                 const specificUnbalance_mm = gValue / angularVelocity;
                 const specificUnbalance_um = specificUnbalance_mm * 1000;
-                coupleUnbalanceOutputs.specificUnbalance.innerHTML = `${specificUnbalance_um.toFixed(2)}<span class="unit">μm (g·mm/kg)</span>`;
+                coupleUnbalanceOutputs.specificUnbalance.innerHTML = `${specificUnbalance_um.toFixed(2)}<span class="balance-unit">μm (g·mm/kg)</span>`;
                 const rotorMass_kg = mass_g / 1000;
                 const totalUnbalance_gmm = rotorMass_kg * specificUnbalance_um;
                 const rotorRadius_mm = diameter_mm / 2;
                 const allowableUnbalanceCouple = totalUnbalance_gmm * (rotorRadius_mm / planesDistance_mm);
-                coupleUnbalanceOutputs.allowableUnbalance.innerHTML = `${allowableUnbalanceCouple.toFixed(2)}<span class="unit">g·mm</span>`;
+                coupleUnbalanceOutputs.allowableUnbalance.innerHTML = `${allowableUnbalanceCouple.toFixed(2)}<span class="balance-unit">g·mm</span>`;
                 const correctionMassPerPlane = allowableUnbalanceCouple / rotorRadius_mm;
-                coupleUnbalanceOutputs.correctionMassPerPlane.innerHTML = `${correctionMassPerPlane.toFixed(2)}<span class="unit">g</span>`;
+                coupleUnbalanceOutputs.correctionMassPerPlane.innerHTML = `${correctionMassPerPlane.toFixed(2)}<span class="balance-unit">g</span>`;
             } catch (e) { console.error("Couple unbalance calculation failed:", e); }
         }
 
@@ -1486,6 +1328,7 @@
             return;
         }
 
+        // Corrected formula: Angle = Torque / Stiffness
         const angleRad = torque / stiffness;
         const angleDeg = angleRad * (180 / Math.PI);
 
